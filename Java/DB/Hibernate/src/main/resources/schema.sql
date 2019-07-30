@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS Publishers (ID int,PublisherId int,BookName varchar(255),Price int,[desc] varchar(255));
+CREATE TABLE IF NOT EXISTS users (ID int primary key auto_increment,LoginName varchar(255),LoginPwd varchar(255));
