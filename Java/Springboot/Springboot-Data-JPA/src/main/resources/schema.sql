@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS Person (ID int PRIMARY KEY auto_increment,Name varchar(255),Age int,Address varchar(255))
