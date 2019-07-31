@@ -24,3 +24,7 @@ hs_err_pid*
 
 **/.settings/**
 **/target/**
+mvnw*
+*.md
+.tern-project
+**/.mvn/**
