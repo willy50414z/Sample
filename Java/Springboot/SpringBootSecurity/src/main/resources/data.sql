@@ -1,0 +1,14 @@
+INSERT INTO  permission VALUES (1, N'/user/common', N'common', NULL, 0);
+INSERT INTO  permission VALUES (2, N'/user/admin', N'admin', NULL, 0);
+INSERT INTO  permission VALUES (3, N'/user/commo', N'commo', N'', 0);
+INSERT INTO  permission VALUES (4, N'/user/admi', N'admi', N'', 0);
+INSERT INTO  role VALUES (1, N'USER');
+INSERT INTO  role VALUES (2, N'ADMIN');
+INSERT INTO  role_permission VALUES (1, 1);
+INSERT INTO  role_permission VALUES (2, 1);
+INSERT INTO  role_permission VALUES (2, 2);
+INSERT INTO  user VALUES (1, N'user', N'827ccb0eea8a706c4c34a16891f84e7b');
+INSERT INTO  user VALUES (2, N'admin', N'827ccb0eea8a706c4c34a16891f84e7b');
+INSERT INTO  user_role  VALUES (1, 1);
+INSERT INTO  user_role  VALUES (2, 1);
+INSERT INTO  user_role  VALUES (2, 2);
