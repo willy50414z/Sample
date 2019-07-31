@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS Student(ID int,name varchar(20),age int);

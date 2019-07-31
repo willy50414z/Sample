@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">  
+          
+<sqlMap>  
+  
+    <!--指定实体类别名，方便下面的书写-->  
+    <typeAlias alias="Student" type="com.willy.ibatis.entity.Student"/>  
+  
+    <!--查询-->  
+    <select id="findAll" resultClass="Student">  
+        select * from student  
+    </select>  
+    <select id="findById" resultClass="Student">  
+        select * from student where id=#id#
+    </select>  
+    <select id="findByName" resultClass="Student">  
+        select * from student where name like '%$name$%'
+    </select>  
+  
+    <!--添加-->  
+    <insert id="addStudent" parameterClass="Student">  
+        insert into student values(#id#,#name#,#age#)  
+<!--         <selectKey keyProperty="id" resultClass="int">   -->
+<!--             select @@identity as id   -->
+<!--         </selectKey>   -->
+    </insert>  
+    <!--更新-->  
+    <update id="updateStudent" parameterClass="Student">  
+        update student set name=#name#,age=#age# where id=#id#  
+    </update>  
+  
+    <!--删除-->  
+    <delete id="deleteById" parameterClass="int">  
+        delete from student where id=#id#  
+    </delete>  
+    
+    <insert id="batchInsert" parameterClass="java.util.List">
+    	<![CDATA[insert into student 
+    	(id,
+    	age,
+    	name) 
+    	values]]>
+    	<iterate conjunction=",">
+    	<![CDATA[
+      	(
+      	#studentList[].id#,
+      	#studentList[].age#,
+      	#studentList[].name#
+      	) 
+      	]]> 
+    	</iterate>
+    </insert>
+  
+</sqlMap>  

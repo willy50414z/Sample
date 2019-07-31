@@ -1,7 +1,6 @@
-package com.willy.main.H2DBSample;
+﻿package com.willy.main.H2DBSample;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.h2.tools.DeleteDbFiles;
-import org.h2.tools.RunScript;
 
 public class SimpleSample {
 	private static String driverName = "org.h2.Driver";
