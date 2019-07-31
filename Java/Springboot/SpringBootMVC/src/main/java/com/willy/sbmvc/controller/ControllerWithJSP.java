@@ -12,4 +12,10 @@ public class ControllerWithJSP {
         view.addObject("userName", "Willy");
         return view;
 	}
+	
+	@GetMapping("/MainPage")
+	public ModelAndView mainPage() {
+		ModelAndView view = new ModelAndView("main");
+        return view;
+	}
 }
