@@ -1,0 +1,2 @@
+1. 遇到spring boot 'entityManagerFactory' that could not be found
+	刪除Repository中的org/hibernate後Update Maven

@@ -10,8 +10,6 @@ import com.willy.springbootjpa.dao.PersonRepository;
 import com.willy.springbootjpa.entity.Person;
 @Component
 public class SpringbootRunner implements CommandLineRunner{
-//	@Autowired
-//	DemoServiceImpl service;
 	@Autowired
 	PersonRepository personRepository; //1
 	public void run(String... args) throws Exception {
