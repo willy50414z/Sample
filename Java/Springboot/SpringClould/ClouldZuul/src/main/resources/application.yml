@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: cloud-zuul
+
+server:
+  port: 8010
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url: 
+      defaultZone: http://127.0.0.1:8000/eureka/
+      
+zuul: 
+  routes:
+    order-serviceId: 
+    path: /findUserInfoByID/**
+    service-id: cloud-customer-service-ribbon #跟 order-serviceId一樣則order-serviceId可省
