@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cloud-customer-service-dao
+
+server:
+  port: 8002
+
+#將此服務註冊至Eureka伺服器
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url: 
+      defaultZone: http://127.0.0.1:8000/eureka/
