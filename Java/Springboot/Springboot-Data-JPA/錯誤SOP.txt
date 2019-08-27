@@ -1,2 +1,2 @@
-1. ¹J¨ìspring boot 'entityManagerFactory' that could not be found
-	§R°£Repository¤¤ªºorg/hibernate«áUpdate Maven
+1. é‡åˆ°spring boot 'entityManagerFactory' that could not be found
+	åˆªé™¤Repositoryä¸­çš„org/hibernateå¾ŒUpdate Maven

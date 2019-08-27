@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    firstds: 
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:datasources1
+      username: 
+      password: 
+    secondds: 
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:datasources2;INIT=RUNSCRIPT FROM 'classpath:schema.sql'\;RUNSCRIPT FROM 'classpath:data2.sql'
+      username: 
+      password:
+  jpa: 
+    hibernate: 
+         ddl-auto: update
+    show-sql: true
+    
+    
