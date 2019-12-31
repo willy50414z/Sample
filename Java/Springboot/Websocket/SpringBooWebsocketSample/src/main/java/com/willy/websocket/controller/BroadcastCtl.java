@@ -24,10 +24,13 @@ public class BroadcastCtl {
      * @MessageMapping 指定要接收消息的地址，类似@RequestMapping。除了注解到方法上，也可以注解到类上
      * @SendTo 接收端會訂閱的message queue, 因此收到請求時將message發送到/topic/getResponse這個queue
      * @param requestMessage
+     * @SendToUser僅返回給message發送者
+     * @SendTo返回給所有訂閱者
      * @return
      */
     @MessageMapping("/receive")
     @SendTo("/topic/getResponse")
+    //@SendToUser("/topic/getResponse")
     public ResponseMessage broadcast(RequestMessage requestMessage){
         logger.info("receive message = {}" , JSONObject.toJSONString(requestMessage));
         ResponseMessage responseMessage = new ResponseMessage();
