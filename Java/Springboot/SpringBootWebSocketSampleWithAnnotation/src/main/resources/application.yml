@@ -1,0 +1,9 @@
+spring: 
+  mvc: 
+    view: 
+      prefix: /jsp/
+      suffix: .jsp
+server: 
+  port: 8090
+  tomcat: 
+    uri-encoding: UTF-8
