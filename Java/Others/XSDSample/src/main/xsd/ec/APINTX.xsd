@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://willy.com.tw/ec/BCIC/APINTX" xmlns:tns="http://willy.com.tw/ec/BCIC/APINTX" xmlns:ec="http://willy.com.tw/ec/BCIC" elementFormDefault="qualified">
+<!-- <import namespace="http://ctbc.com.tw/ec/BCIC" schemaLocation="EC.xsd"/> -->
+
+	<element name="getApInTxListRq" type="tns:getApInTxListRqType" /><!--RQ:查詢Inbound交易列表 -->
+	<element name="getApInTxListRs" type="tns:getApInTxListRsType" /><!--RS:查詢Inbound交易列表 -->
+	<element name="getApInTxBulkDetailListRq" type="tns:getApInTxBulkDetailListRqType" /><!--RQ:查詢Inbound整批交易明細列表 -->
+	<element name="getApInTxBulkDetailListRs" type="tns:getApInTxBulkDetailListRsType" /><!--RS:查詢Inbound整批交易明細列表 -->
+	<element name="getApInTxDetailRq" type="tns:getApInTxDetailRqType" /><!--RQ:查詢Inbound交易REC明細 -->
+	<element name="getApInTxDetailRs" type="tns:getApInTxDetailRsType" /><!--RS:查詢Inbound交易REC明細 -->
+	<element name="getApInTxContentRq" type="tns:getApInTxContentRqType" />
+	<element name="getApInTxContentRs" type="tns:getApInTxContentRsType" />
+	<element name="doModifyApInTx" type="tns:doModifyApInTxType" /><!-- 異動Inbound交易資料 -->
+	<element name="doModifyApInTxD" type="tns:doModifyApInTxDType" /><!-- 異動Inbound REC交易資料 -->
+	<element name="getApInTxPaymentDetailRq" type="tns:getApInTxPaymentDetailRqType" /><!--RQ:查詢Inbound單筆交易明細 -->
+	<element name="getApInTxPaymentDetailRs" type="tns:getApInTxPaymentDetailRsType" /><!--RS:查詢Inbound單筆交易明細 -->
+	<element name="getApInListRq" type="tns:getApInListRqType"></element>
+    <element name="getApInListRs" type="tns:getApInListRsType"></element>
+ 	<complexType name="getApInListRsType">
+ 		<sequence>
+	    	<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="RqUid" type="tns:ApTxIdType"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="QType" type="string"></element>
+			<element name="StartDate" type="tns:DateTimeType"></element>
+			<element name="StartTime" type="tns:DateTimeType"></element>
+			<element name="EndDate" type="tns:DateTimeType"></element>
+			<element name="EndTime" type="tns:DateTimeType"></element>
+			<element name="Country" type="tns:CountryType"></element>
+			<element name="RelationIdCountry" type="tns:CountryType"></element>
+			<element name="CustId" type="tns:CompanyIdType"></element>
+			<element name="RelationId" type="tns:CompanyIdType"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="Status" type="tns:StatusType"></element>
+			<element name="Acct" type="tns:AcctType"></element>
+			<element name="Ccy" type="tns:CcyType"></element>
+			<element name="Others" type="string"></element>
+			<element name="Note" type="string"></element>
+			<element name="RNote" type="string"></element>
+		</sequence>
+ 	</complexType>
+    <complexType name="getApInListRqType">
+    	<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="RqUid" type="tns:ApTxIdType"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="tns:CountryType"></element>
+			<element name="CustId" type="tns:CompanyIdType"></element>
+			<element name="FunName" type="string"></element>
+			<element name="Status" type="tns:StatusType"></element>
+			<element name="Acct" type="tns:AcctType"></element>
+			<element name="Ccy" type="tns:CcyType"></element>
+			<element name="StartDate" type="tns:DateTimeType"></element>
+			<element name="StartTime" type="tns:DateTimeType"></element>
+			<element name="EndDate" type="tns:DateTimeType"></element>
+			<element name="EndTime" type="tns:DateTimeType"></element>
+		</sequence>
+    </complexType>
+	<complexType name="getApInTxListRqType"><!--RQ:查詢Inbound交易列表 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="Country" type="tns:CountryType"></element>
+			<element name="CustId" type="tns:CompanyIdType"></element>
+			<element name="ParentCountry" type="tns:CountryType"></element>
+			<element name="ParentCustId" type="tns:CompanyIdType"></element>
+			<element name="RelationIdCountry" type="tns:CountryType"></element>
+			<element name="RelationId" type="tns:CompanyIdType"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="TxFile" type="tns:TxFileType"></element>
+			<element name="Status" type="tns:StatusType"></element>
+			<element name="Acct" type="tns:AcctType"></element>
+			<element name="Ccy" type="tns:CcyType"></element>
+			<element name="ApTxIdOrg" type="tns:ApTxIdType"></element>
+			<element name="RqUid" type="tns:ApTxIdType"></element>
+			<element name="ISearch" type="tns:ISearchType"></element>
+			<element name="DateMode" type="tns:DateModeType"></element>
+			<element name="StartDate" type="tns:DateTimeType"></element>
+			<element name="StartTime" type="tns:DateTimeType"></element>
+			<element name="EndDate" type="tns:DateTimeType"></element>
+			<element name="EndTime" type="tns:DateTimeType"></element>
+			<element name="PageNum" type="int"></element>
+			<element name="PageSize" type="int"></element>
+			<element name="DetailListSize" type="int"></element>
+			<element name="TxType" type="string"></element>
+			<element name="TxValue" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="ExcludeStatus" type="string"></element>
+			<element name="SortSqlExpression" type="string"></element>
+			<element name="NotReturnApInTxList" type="boolean"></element>
+			<element name="NotReturnTxSumList" type="boolean"></element>
+			<element name="UserId" type="string"></element>
+			<element name="TxnType" type="string"></element>
+			<element name="SeqNo" type="string"></element>
+			<element name="ReqFromWeb" type="boolean"></element>
+			<element name="InquiryByAllCondition" type="boolean"></element>
+<!-- 			<element name="RelationAcctList" type="ec:RelationAcctListType"></element> -->
+<!-- 			<element name="WebUser" type="ec:WebUserType"></element> -->
+			<element name="FunName" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxListRsType"><!--RS:查詢Inbound交易列表 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApInTxListLength" type="int"></element>
+			<element name="TxSumListLength" type="int"></element>
+			<element name="ApInTxList" type="tns:ApInTxListType"></element><!--Inbound交易列表LIST -->
+			<element name="TxSumList" type="tns:TxSumListType"></element><!--Inbound整批交易統計LIST -->
+			<element name="Result" type="int"></element>
+			<element name="Desc" type="string"></element>
+			<element name="PageNum" type="int"></element>
+			<element name="PageSize" type="int"></element>
+			<element name="TotalPage" type="int"></element>
+			<element name="TotalCount" type="long"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="getApInTxDetailRqType"><!--RQ:查詢Inbound交易REC明細 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="TxFile" type="tns:TxFileType"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="ApTxId" type="string"></element>
+			<element name="ReqFromWeb" type="boolean"></element>
+			<element name="Country" type="tns:CountryType"></element>
+			<element name="CustId" type="tns:CompanyIdType"></element>
+<!-- 			<element name="WebUser" type="ec:WebUserType"></element> -->
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxDetailRsType"><!--RS:查詢Inbound交易REC明細 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="TxFile" type="tns:TxFileType"></element>
+			<element name="ApInTxA" type="tns:ApInTxAType"></element>
+			<element name="ApInTxB" type="tns:ApInTxBType"></element>
+			<element name="ApInTxB1" type="tns:ApInTxB1Type"></element>
+			<element name="ApInTxF" type="tns:ApInTxFType"></element>
+			<element name="ApInTxL" type="tns:ApInTxLType"></element>
+			<element name="ApInTxStepListLength" type="int"></element>
+			<element name="ApInTxChargeListLength" type="int"></element>
+			<element name="SplitDetailListLength" type="int"></element>
+			<element name="ApInTxStepList" type="tns:ApInTxStepListType"></element><!--Inbound REC交易歷程LIST -->
+			<element name="ApInTxChargeList" type="tns:ApInTxChargeListType"></element><!--Inbound REC 手續費紀錄LIST -->
+			<element name="SplitDetailList" type="tns:SplitDetailListType"></element><!--Inbound REC 主機拆檔紀錄LIST -->
+			<element name="Result" type="int"></element>
+			<element name="Desc" type="string"></element>
+			<element name="InvoiceDataListLength" type="int"></element>
+			<element name="InvoiceDataList" type="tns:InvoiceDataListType"></element><!-- Inbound REC 發票明細LIST -->
+			<element name="ApInTxHostSplitListLength" type="int"></element>
+			<element name="ApInTxHostSplitList" type="tns:ApInTxHostSplitListType"></element><!--Inbound REC 主機拆檔紀錄LIST -->
+		</sequence>
+	</complexType>
+
+	<complexType name="ApInTxListType"><!--Inbound交易列表LIST -->
+		<sequence>
+			<element name="ApInTx" type="tns:ApInTxType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxAListType">
+		<sequence>
+			<element name="ApInTxA" type="tns:ApInTxAType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxBListType">
+		<sequence>
+			<element name="ApInTxB" type="tns:ApInTxBType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxB1ListType">
+		<sequence>
+			<element name="ApInTxB1" type="tns:ApInTxB1Type" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxFListType">
+		<sequence>
+			<element name="ApInTxF" type="tns:ApInTxFType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxLListType">
+		<sequence>
+			<element name="ApInTxL" type="tns:ApInTxLType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="TxSumListType"><!--Inbound整批交易統計LIST -->
+		<sequence>
+			<element name="TxSum" type="tns:TxSumType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxStepListType">
+		<sequence>
+			<element name="ApInTxStep" type="tns:ApInTxStepType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxHostSplitListType">
+		<sequence>
+			<element name="ApInTxHostSplit" type="tns:ApInTxHostSplitType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxChargeListType">
+		<sequence>
+			<element name="ApInTxCharge" type="tns:ApInTxChargeType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ApInTxChargeType">
+		<sequence>
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="ChargeSeq" type="string"></element>
+			<element name="EbSeqHost" type="string"></element>
+			<element name="ChargeDesc" type="string"></element>
+			<element name="ChargeCcy" type="string"></element>
+			<element name="ChargeAmt" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxHostSplitType">
+		<sequence>
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="EbSeqhost" type="string"></element>
+			<element name="EbSplitAmt" type="string"></element>
+			<element name="ChanRefNum" type="string"></element>
+			<element name="ReturnCode" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxType"><!--Inbound交易TYPE -->
+		<sequence>
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="CustName" type="string"></element>
+			<element name="RelationIdCountry" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="ApTxType" type="string"></element>
+			<element name="TxFile" type="string"></element>
+			<element name="Acct" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="BnfName" type="string"></element>
+			<element name="BnfAcct" type="string"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+			<element name="AcctType" type="string"></element><!--檢視交易無此資料 -->
+			<element name="TotalRec" type="long"></element>
+			<element name="TotalAmt" type="double"></element>
+			<element name="RTotalRec" type="long"></element>
+			<element name="RTotalAmt" type="double"></element>
+			<element name="TotalChargeAmt" type="double"></element>
+			<element name="TotalChargeCcy" type="string"></element>
+			<element name="AuthLevel" type="string"></element>
+			<element name="CustRqDate" type="tns:DateTimeType"></element><!--檢視交易無此資料 -->
+			<element name="CustRqTime" type="tns:DateTimeType"></element><!--檢視交易無此資料 -->
+			<element name="ProcessDateTime" type="tns:DateTimeType"></element><!--檢視交易無此資料 -->
+			<element name="HostRqDateTime" type="tns:DateTimeType"></element><!--檢視交易無此資料 -->
+			<element name="HostRspDateTime" type="tns:DateTimeType"></element><!--檢視交易無此資料 -->
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Status" type="tns:StatusType"></element>
+			<element name="Note" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<element name="ApInTxDetailListLength" type="int"></element>
+			<element name="ApInTxAListLength" type="int"></element>
+			<element name="ApInTxBListLength" type="int"></element>
+			<element name="ApInTxB1ListLength" type="int"></element>
+			<element name="ApInTxFListLength" type="int"></element>
+			<element name="ApInTxLListLength" type="int"></element>
+			<element name="ApInTxDetailList" type="tns:ApInTxDetailListType"></element>
+			<element name="ApInTxAList" type="tns:ApInTxAListType"></element>
+			<element name="ApInTxBList" type="tns:ApInTxBListType"></element>
+			<element name="ApInTxB1List" type="tns:ApInTxB1ListType"></element>
+			<element name="ApInTxFList" type="tns:ApInTxFListType"></element>
+			<element name="ApInTxLList" type="tns:ApInTxLListType"></element>
+			<element name="RNote" type="string"></element>
+			<element name="ApInTxAListPageNum" type="int"></element>
+			<element name="ApInTxAListPageSize" type="int"></element>
+			<element name="ApInTxAListTotalPage" type="int"></element>
+			<element name="ApInTxAListTotalCount" type="long"></element>
+			<element name="ApInTxBListPageNum" type="int"></element>
+			<element name="ApInTxBListPageSize" type="int"></element>
+			<element name="ApInTxBListTotalPage" type="int"></element>
+			<element name="ApInTxBListTotalCount" type="long"></element>
+			<element name="ApInTxB1ListPageNum" type="int"></element>
+			<element name="ApInTxB1ListPageSize" type="int"></element>
+			<element name="ApInTxB1ListTotalPage" type="int"></element>
+			<element name="ApInTxB1ListTotalCount" type="long"></element>
+			<element name="ApInTxFListPageNum" type="int"></element>
+			<element name="ApInTxFListPageSize" type="int"></element>
+			<element name="ApInTxFListTotalPage" type="int"></element>
+			<element name="ApInTxFListTotalCount" type="long"></element>
+			<element name="ApInTxLListPageNum" type="int"></element>
+			<element name="ApInTxLListPageSize" type="int"></element>
+			<element name="ApInTxLListTotalPage" type="int"></element>
+			<element name="ApInTxLListTotalCount" type="long"></element>
+			<element name="EncodingType" type="string"></element>
+			<element name="Result" type="string"></element>
+			<element name="CompanyNo" type="string"></element>
+			<element name="STotalRec" type="long"></element>
+			<element name="STotalAmt" type="double"></element>
+			<element name="CTotalRec" type="long"></element>
+			<element name="CTotalAmt" type="double"></element>
+			<element name="FunName" type="tns:FunNameType"></element>
+			<element name="AutoPost" type="string"></element>
+			<element name="SplitFlag" type="int"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxDetailListType"><!--Inbound交易Detail TYPE : 前台第一頁第二層 -->
+		<sequence>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankId" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Acct" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxAType">
+		<sequence>
+			<!--基本資料 -->
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="CustName" type="string"></element>
+			<element name="RelationIdCountry" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+			<element name="CustRqDate" type="tns:DateTimeType"></element>
+			<element name="CustRqTime" type="tns:DateTimeType"></element>
+			<element name="ProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRqDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRspDateTime" type="tns:DateTimeType"></element>
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="HostRefNum" type="string"></element>
+			<element name="CbcRefNum" type="string"></element>
+			<element name="TdAcctNum" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="Amt" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankId" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<!--類別資料 -->
+			<element name="HTxType" type="string"></element>
+			<element name="HDsId" type="string"></element>
+			<element name="DInAcctName" type="string"></element>
+			<element name="DInId" type="string"></element>
+			<element name="DTxType" type="string"></element>
+			<element name="DCheckSum" type="string"></element>
+			<element name="ApInTxHostSplitListLength" type="int"></element>
+			<element name="ApInTxHostSplitList" type="tns:ApInTxHostSplitListType"></element>
+			<element name="ApInTxReturnCode" type="tns:ApInTxReturnCodeType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxBType">
+		<sequence>
+			<!--基本資料 -->
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="CustName" type="string"></element>
+			<element name="RelationIdCountry" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+			<element name="CustRqDate" type="tns:DateTimeType"></element>
+			<element name="CustRqTime" type="tns:DateTimeType"></element>
+			<element name="ProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRqDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRspDateTime" type="tns:DateTimeType"></element>
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="HostRefNum" type="string"></element>
+			<element name="CbcRefNum" type="string"></element>
+			<element name="TdAcctNum" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="Amt" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankId" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<!--類別資料 -->
+			<element name="HBankCode" type="string"></element>
+			<element name="HCustName" type="string"></element>
+			<element name="HCustRqDate" type="tns:DateTimeType"></element>
+			<element name="HFeeCode" type="string"></element>
+			<element name="HOutAcctName" type="string"></element>
+			<element name="DVendorId" type="string"></element>
+			<element name="DVendorName" type="string"></element>
+			<element name="DVendorPostalNo" type="string"></element>
+			<element name="DVendorEMail" type="string"></element>
+			<element name="DVendorFax" type="string"></element>
+			<element name="DNoteNo" type="string"></element>
+			<element name="DTxType" type="string"></element>
+			<element name="DMemo" type="string"></element>
+			<element name="DNoticeType" type="string"></element>
+			<element name="DAssignDueDate" type="tns:DateTimeType"></element>
+			<element name="DDetailCharge" type="double"></element>
+			<element name="DDetailChargeType" type="string"></element>
+			<element name="ApInTxHostSplitListLength" type="int"></element>
+			<element name="ApInTxHostSplitList" type="tns:ApInTxHostSplitListType"></element>
+			<element name="InvoiceDataListLength" type="int"></element>
+			<element name="InvoiceDataList" type="tns:InvoiceDataListType"></element>
+			<element name="ApInTxReturnCode" type="tns:ApInTxReturnCodeType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxB1Type">
+		<sequence>
+			<!--基本資料 -->
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="CustName" type="string"></element>
+			<element name="RelationIdCountry" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+			<element name="CustRqDate" type="tns:DateTimeType"></element>
+			<element name="CustRqTime" type="tns:DateTimeType"></element>
+			<element name="ProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRqDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRspDateTime" type="tns:DateTimeType"></element>
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="HostRefNum" type="string"></element>
+			<element name="CbcRefNum" type="string"></element>
+			<element name="TdAcctNum" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="Amt" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankId" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<!--類別資料 -->
+			<element name="RemitType" type="string"></element>
+			<element name="InBranchId" type="string"></element>
+			<element name="Summary" type="string"></element>
+			<element name="InId" type="string"></element>
+			<element name="OutId" type="string"></element>
+			<element name="OutAcctName" type="string"></element>
+			<element name="OutTel" type="string"></element>
+			<element name="Memo" type="string"></element>
+			<element name="CheckCode" type="string"></element>
+			<element name="SendNum" type="string"></element>
+			<element name="NoteNo" type="string"></element>
+			<element name="DetailCharge" type="double"></element>
+			<element name="DetailChargeType" type="string"></element>
+			<element name="ApInTxHostSplitListLength" type="int"></element>
+			<element name="ApInTxHostSplitList" type="tns:ApInTxHostSplitListType"></element>
+			<element name="ApInTxReturnCode" type="tns:ApInTxReturnCodeType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxFType">
+		<sequence>
+			<!--基本資料 -->
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="CustName" type="string"></element>
+			<element name="RelationIdCountry" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+			<element name="CustRqDate" type="tns:DateTimeType"></element>
+			<element name="CustRqTime" type="tns:DateTimeType"></element>
+			<element name="ProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRqDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRspDateTime" type="tns:DateTimeType"></element>
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="HostRefNum" type="string"></element>
+			<element name="CbcRefNum" type="string"></element>
+			<element name="TdAcctNum" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="Amt" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankId" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<!--類別資料 -->
+			<element name="OutAcctName" type="string"></element>
+
+			<element name="HTxType" type="string"></element>
+			<element name="HCustType" type="string"></element>
+			<element name="HCustRqDate" type="tns:DateTimeType"></element>
+			<element name="HDcrType" type="string"></element>
+			<element name="DId" type="string"></element>
+			<element name="DBankSwiftCode" type="string"></element>
+			<element name="DBankAddr1" type="string"></element>
+			<element name="DBankAddr2" type="string"></element>
+			<element name="DBankAddr3" type="string"></element>
+			<element name="DBenName" type="string"></element>
+			<element name="DBenAddr1" type="string"></element>
+			<element name="DBenAddr2" type="string"></element>
+			<element name="DBenAddr3" type="string"></element>
+			<element name="DMemo1" type="string"></element>
+			<element name="DMemo2" type="string"></element>
+			<element name="DMemo3" type="string"></element>
+			<element name="DMemo4" type="string"></element>
+			<element name="DRmtFund" type="string"></element>
+			<element name="DBenCountry" type="string"></element>
+			<element name="DVendorId" type="string"></element>
+			<element name="DVendorEMail1" type="string"></element>
+			<element name="DVendorEMail2" type="string"></element>
+			<element name="DNoticeType" type="string"></element>
+			<element name="DEMail" type="string"></element>
+			<element name="DFax" type="string"></element>
+			<element name="DMT202" type="string"></element>
+			<element name="DCorBankSwiftCode" type="string"></element>
+			<element name="DDetailCharge" type="string"></element>
+			<element name="DFeeType" type="string"></element>
+			<element name="DFeeCcy" type="string"></element>
+			<element name="DFeeAmt" type="string"></element>
+			<element name="DCustNum" type="string"></element>
+			<element name="DTxNote" type="string"></element>
+			<element name="DFileSource" type="string"></element>
+			<element name="DIntrmdtBankName" type="string"></element>
+			<element name="DIntrmdtBankAddr1" type="string"></element>
+			<element name="DIntrmdtBankAddr2" type="string"></element>
+			<element name="DIntrmdtBankAddr3" type="string"></element>
+			<element name="DPurposeOfRemit1" type="string"></element>
+			<element name="DPurposeOfRemit2" type="string"></element>
+			<element name="DY02" type="string"></element>
+			<element name="DY04" type="string"></element>
+			<element name="DY05" type="string"></element>
+			<element name="DY07" type="string"></element>
+			<element name="DY08" type="string"></element>
+			<element name="DY09" type="string"></element>
+			<element name="DY10" type="string"></element>
+			<element name="DY11" type="string"></element>
+			<element name="DY12" type="string"></element>
+			<element name="DY15" type="string"></element>
+			<element name="DY17" type="string"></element>
+			<element name="DY19" type="string"></element>
+			<element name="DY25" type="string"></element>
+			<element name="DY30" type="string"></element>
+			<element name="DVenCode" type="string"></element>
+			<element name="DClearingCode" type="string"></element>
+			<element name="ApInTxHostSplitListLength" type="int"></element>
+			<element name="ApInTxHostSplitList" type="tns:ApInTxHostSplitListType"></element>
+			<element name="InvoiceDataListLength" type="int"></element>
+			<element name="InvoiceDataList" type="tns:InvoiceDataListType"></element>
+			<element name="ApInTxReturnCode" type="tns:ApInTxReturnCodeType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxLType">
+		<sequence>
+			<!--基本資料 -->
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="CustName" type="string"></element>
+			<element name="RelationIdCountry" type="string"></element>
+			<element name="RelationId" type="string"></element>
+			<element name="RelationIdName" type="string"></element>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+			<element name="CustRqDate" type="tns:DateTimeType"></element>
+			<element name="CustRqTime" type="tns:DateTimeType"></element>
+			<element name="ProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRqDateTime" type="tns:DateTimeType"></element>
+			<element name="HostRspDateTime" type="tns:DateTimeType"></element>
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="HostRefNum" type="string"></element>
+			<element name="CbcRefNum" type="string"></element>
+			<element name="TdAcctNum" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="Amt" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankId" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<!--類別資料 -->
+			<element name="HTxType" type="string"></element>
+			<element name="HCustRqDate" type="tns:DateTimeType"></element>
+			<element name="DRmtSystem" type="string"></element>
+			<element name="DInBankId" type="string"></element>
+			<element name="DBankAddr" type="string"></element>
+			<element name="DInAcctAddr" type="string"></element>
+			<element name="DDetailCharge" type="double"></element>
+			<element name="DMemo" type="string"></element>
+			<element name="DPurposeCode" type="string"></element>
+			<element name="DPurposeDt" type="string"></element>
+			<element name="DTaxDt" type="string"></element>
+			<element name="DNoticeType" type="string"></element>
+			<element name="DEMail" type="string"></element>
+			<element name="DBenType" type="string"></element>
+			<element name="DDetailChargeType" type="string"></element>
+			<element name="DNoteNo" type="string"></element>
+			<element name="DClearingCode" type="string"></element>
+			<element name="ApInTxHostSplitListLength" type="int"></element>
+			<element name="ApInTxHostSplitList" type="tns:ApInTxHostSplitListType"></element>
+			<element name="InvoiceDataListLength" type="int"></element>
+			<element name="InvoiceDataList" type="tns:InvoiceDataListType"></element>
+			<element name="ApInTxReturnCode" type="tns:ApInTxReturnCodeType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="InvoiceDataType">
+		<sequence>
+			<element name="DetailSeq" type="string"></element>
+			<element name="InvoiceNo" type="string"></element>
+			<element name="InvoiceItem" type="string"></element>
+			<element name="InvoiceCcy" type="string"></element>
+			<element name="InvoiceAmt" type="string"></element>
+			<element name="InvoiceMemo" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="SplitDetailType">
+		<sequence>
+			<element name="EbSeqHost" type="string"></element>
+			<element name="EbSplitAmt" type="string"></element>
+			<element name="ChanRefNum" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="TxSumType"><!--Inbound整批交易統計TYPE -->
+		<sequence>
+			<element name="ProductId" type="tns:ProductIdType"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="TotalAmt" type="double"></element>
+			<element name="TotalRec" type="long"></element>
+			<element name="CTotalAmt" type="double"></element>
+			<element name="CTotalRec" type="long"></element>
+			<element name="STotalAmt" type="double"></element>
+			<element name="STotalRec" type="long"></element>
+			<element name="RTotalAmt" type="double"></element>
+			<element name="RTotalRec" type="long"></element>
+			<element name="TotalChargeAmt" type="double"></element>
+			<element name="TotalChargeCcy" type="string"></element>
+			<element name="TxFile" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxStepType">
+		<sequence>
+			<element name="ApTxId" type="string"></element>
+			<element name="StepDateTime" type="tns:DateTimeType"></element>
+			<element name="StepDesc" type="string"></element>
+			<element name="StepStatus" type="string"></element>
+			<element name="StepAmt" type="double"></element>
+			<element name="StepUser" type="string"></element>
+			<element name="StepRC" type="string"></element>
+			<element name="StepRCDesc" type="string"></element>
+			<element name="ValueDate" type="tns:DateTimeType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="InvoiceDataListType">
+		<sequence>
+			<element name="InvoiceData" type="tns:InvoiceDataType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+	<complexType name="SplitDetailListType">
+		<sequence>
+			<element name="SplitDetail" type="tns:SplitDetailType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="getApInTxBulkDetailListRqType"><!--RQ:查詢Inbound整批交易明細列表 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="TxBeginDate" type="tns:DateTimeType"></element>
+			<element name="TxEndDate" type="tns:DateTimeType"></element>
+			<element name="RecAmtMin" type="double"></element>
+			<element name="RecAmtMax" type="double"></element>
+			<element name="RecResult" type="string"></element>
+			<element name="ISearch" type="tns:ISearchType"></element>
+			<element name="ExcludeStatus" type="string"></element>
+			<element name="ApInTxDtlListPageNum" type="int"></element>
+			<element name="ApInTxDtlListPageSize" type="int"></element>
+			<element name="ApInTxDtlListSortSqlExpression" type="string"></element>
+			<element name="DateMode" type="tns:DateModeType"></element>
+			<element name="StartDate" type="tns:DateTimeType"></element>
+			<element name="StartTime" type="tns:DateTimeType"></element>
+			<element name="EndDate" type="tns:DateTimeType"></element>
+			<element name="EndTime" type="tns:DateTimeType"></element>
+			<element name="NotReturnApInTxList" type="boolean"></element>
+			<element name="NotReturnApInTxStepList" type="boolean"></element>
+			<element name="ReturnTxSum" type="boolean"></element>
+			<element name="RecResultDesc" type="string"></element>
+			<element name="UserId" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="ApimId" type="string"></element>
+			<element name="ReqFromWeb" type="boolean"></element>
+			<element name="DataRecSeq" type="string"></element>
+<!-- 			<element name="WebUser" type="ec:WebUserType"></element> -->
+			<element name="ApTxId" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxBulkDetailListRsType"><!--RS:查詢Inbound整批交易明細列表 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="TxSum" type="tns:TxSumType"></element>
+			<element name="ApInTxListLength" type="int"></element>
+			<element name="ApInTxStepListLength" type="int"></element>
+			<element name="ApInTxList" type="tns:ApInTxListType"></element><!-- Inbound交易拆單資料 -->
+			<element name="ApInTxStepList" type="tns:ApInTxStepListType"></element><!--Inbound整批交易歷程LIST -->
+			<element name="Result" type="int"></element>
+			<element name="Desc" type="string"></element>
+			<element name="ApInTx" type="tns:ApInTxType"></element><!-- Inbound整批交易明細資料 -->
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxContentRqType">
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApId" type="string"></element>
+			<element name="FunName" type="tns:FunNameType"></element>
+			<element name="RqUid" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxContentRsType">
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApId" type="string"></element>
+			<element name="FunName" type="tns:FunNameType"></element>
+			<element name="RqUid" type="string"></element>
+			<element name="Resurt" type="string"></element>
+			<element name="Exectime" type="tns:DateTimeType"></element>
+			<element name="RequestTime" type="tns:DateTimeType"></element>
+			<element name="RqData" type="string"></element>
+			<element name="RsData" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="doModifyAuthResultRqType">
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="AuthResultList" type="tns:AuthResultListType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="doModifyAuthResultRsType">
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="Length" type="int"></element>
+			<element name="AuthResultList" type="tns:AuthResultListType"></element>
+			<element name="Result" type="int"></element>
+			<element name="Desc" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AuthResultListType">
+		<sequence>
+			<element name="AuthResultData" type="tns:AuthResultType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AuthResultType">
+		<sequence>
+			<element name="AuthType" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="AuthResult" type="string"></element>
+			<element name="Memo" type="string"></element>
+			<element name="Result" type="int"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="doModifyApInTxType">
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApInTx" type="tns:ApInTxType"></element><!-- UI上顯示交易明細, 可用於查詢帶出整批檔案明細資料 -->
+			<element name="ApInTxModifyContent" type="tns:ApInTxModifyContentType"></element> <!-- 要修改的內容 -->
+		</sequence>
+	</complexType>
+
+	<complexType name="ApInTxModifyContentType">
+		<sequence>
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="TxFile" type="tns:TxFileType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyTime" type="dateTime"></element>
+			<element name="BeforeStatus" type="tns:StatusType"></element>
+			<element name="AfterStatus" type="tns:StatusType"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="doModifyApInTxDType">
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApInTx" type="tns:ApInTxType"></element>
+			<element name="ApInTxDListLength" type="int"></element>
+			<element name="ApInTxDList" type="tns:ApInTxDListType"></element> <!-- UI上顯示整批檔案明細資料, 可用於查詢帶出REC明細資料 -->
+		</sequence>
+	</complexType>
+
+
+	<complexType name="ApInTxDListType">
+		<sequence>
+			<element name="ApInTxD" type="tns:ApInTxDType" minOccurs="0" maxOccurs="10000"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ApInTxDType">
+		<sequence>
+			<element name="ApInTxA" type="tns:ApInTxAType"></element>
+			<element name="ApInTxB" type="tns:ApInTxBType"></element>
+			<element name="ApInTxB1" type="tns:ApInTxB1Type"></element>
+			<element name="ApInTxF" type="tns:ApInTxFType"></element>
+			<element name="ApInTxL" type="tns:ApInTxLType"></element>
+			<element name="ApInTxDModifyContent" type="tns:ApInTxDModifyContentType"></element> <!-- 要修改的內容 -->
+		</sequence>
+	</complexType>
+
+	<complexType name="ApInTxDModifyContentType">
+		<sequence>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="TxFile" type="tns:TxFileType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyTime" type="dateTime"></element>
+			<element name="BeforeResult" type="string"></element>
+			<element name="AfterResult" type="string"></element>
+			<element name="BeforeResultDesc" type="string"></element>
+			<element name="AfterResultDesc" type="string"></element>
+			<element name="BeforeRNote" type="string"></element>
+			<element name="AfterRNote" type="string"></element>
+			<element name="BeforeHostRefNum" type="string"></element>
+			<element name="AfterHostRefNum" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxReturnCodeType">
+		<sequence>
+			<element name="BcicRc" type="string"></element>
+			<element name="OsysRc" type="string"></element>
+			<element name="RcDesc" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateTime" type="dateTime"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyTime" type="dateTime"></element>
+			<element name="RcDescCN" type="string"></element>
+			<element name="RcDescEN" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxPaymentDetailRqType"><!--RQ:查詢Inbound單筆交易明細 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApTxId" type="string"></element>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="ExcludeStatus" type="string"></element>
+			<element name="CustId" type="string"></element>
+			<element name="Country" type="string"></element>
+			<element name="SeqNo" type="string"></element>
+			<element name="ReqFromWeb" type="boolean"></element>
+			<element name="NotReturnApInTxStepList" type="boolean"></element>
+		</sequence>
+	</complexType>
+	<complexType name="getApInTxPaymentDetailRsType"><!--RS:查詢Inbound單筆交易明細 -->
+		<sequence>
+			<element name="TxnId" type="tns:TxnIdType"></element>
+			<element name="ApInTx" type="tns:ApInTxType"></element><!-- Inbound單筆交易資料 -->
+			<element name="ApInTxD" type="tns:ApInTxDetailType"></element><!-- Inbound單筆交易明細資料 -->
+			<element name="ApInTxDST" type="tns:ApInTxDetailStType"></element><!-- Inbound單筆交易明細資料 -->
+			<element name="ApInTxStepList" type="tns:ApInTxStepListType"></element><!--Inbound單筆交易歷程LIST -->
+			<element name="ApInTxStepListLength" type="int"></element>
+			<element name="ApInTxReturnCode" type="tns:ApInTxReturnCodeType"></element>
+			<element name="Result" type="int"></element>
+			<element name="Desc" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxDetailType"><!-- 對應APIN_TX_D表資料 -->
+		<sequence>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="DataRecSeq" type="string"></element>
+			<element name="ApTxId" type="string"></element>
+			<element name="OutAcct" type="string"></element>
+			<element name="OutName" type="string"></element>
+			<element name="InAcct" type="string"></element>
+			<element name="InAcctName" type="string"></element>
+			<element name="InBankCode" type="string"></element>
+			<element name="InBankName" type="string"></element>
+			<element name="Amt" type="string"></element>
+			<element name="Ccy" type="string"></element>
+			<element name="TxDate" type="tns:DateTimeType"></element>
+			<element name="HostProcessDateTime" type="tns:DateTimeType"></element>
+			<element name="Result" type="string"></element>
+			<element name="ResultDesc" type="string"></element>
+			<element name="ErrorCode" type="string"></element>
+			<element name="RNote" type="string"></element>
+			<element name="HostRefNum" type="string"></element>
+			<element name="CbcRefNum" type="string"></element>
+			<element name="TdAcctNum" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateDateTime" type="tns:DateTimeType"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyDateTime" type="tns:DateTimeType"></element>
+			<element name="MsgTime" type="tns:DateTimeType"></element>
+			<element name="InAmt" type="string"></element>
+			<element name="InCcy" type="string"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ApInTxDetailStType"><!-- 對應APIN_TX_D_ST表資料 -->
+		<sequence>
+			<element name="ApTxIdOrg" type="string"></element>
+			<element name="RecSeq" type="string"></element>
+			<element name="PayTxType" type="string"></element>
+			<element name="CleanType" type="string"></element>
+			<element name="CleanCode" type="string"></element>
+			<element name="BankAddr" type="string"></element>
+			<element name="Memo" type="string"></element>
+			<element name="InvoiceNo" type="string"></element>
+			<element name="Email" type="string"></element>
+			<element name="BenAddr" type="string"></element>
+			<element name="BenCountry" type="string"></element>
+			<element name="RmtCode" type="string"></element>
+			<element name="RmtType" type="string"></element>
+			<element name="DealNum" type="string"></element>
+			<element name="ExRate" type="double"></element>
+			<element name="ChargeType" type="string"></element>
+			<element name="TaxNum" type="string"></element>
+			<element name="RmtSystem" type="string"></element>
+			<element name="IrBankSwiftCode" type="string"></element>
+			<element name="IrBankName" type="string"></element>
+			<element name="IrBankAddr" type="string"></element>
+			<element name="BenType" type="string"></element>
+			<element name="TransMode" type="string"></element>
+			<element name="ResidentCountry" type="string"></element>
+			<element name="PayGatherType" type="string"></element>
+			<element name="RelatedCcy" type="string"></element>
+			<element name="PurRemit1" type="string"></element>
+			<element name="TxAmt1" type="double"></element>
+			<element name="TxDesc1" type="string"></element>
+			<element name="PurRemit2" type="string"></element>
+			<element name="TxAmt2" type="double"></element>
+			<element name="TxDesc2" type="string"></element>
+			<element name="SafeApproveNo" type="string"></element>
+			<element name="BopInoutFlg" type="string"></element>
+			<element name="ContractNo" type="string"></element>
+			<element name="RmbTrnCode" type="string"></element>
+			<element name="RmbDealLimit" type="string"></element>
+			<element name="RmbApproveNo" type="string"></element>
+			<element name="Reserved1" type="string"></element>
+			<element name="Reserved2" type="string"></element>
+			<element name="Reserved3" type="string"></element>
+			<element name="CreateUser" type="string"></element>
+			<element name="CreateTime" type="dateTime"></element>
+			<element name="ModifyUser" type="string"></element>
+			<element name="ModifyTime" type="dateTime"></element>
+			<element name="MT202" type="string"></element>
+		</sequence>
+	</complexType>
+	<simpleType name="TxnIdType">
+		<restriction base="string">
+			<maxLength value="50"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="CompanyIdType">
+		<restriction base="string">
+			<maxLength value="20"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="CountryType">
+		<restriction base="string">
+			<maxLength value="30"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="FunNameType">
+		<restriction base="string">
+			<maxLength value="30"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="ProductIdType">
+		<restriction base="string">
+			<maxLength value="20"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="TxFileType">
+		<restriction base="string">
+			<maxLength value="5"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="StatusType">
+		<restriction base="string">
+			<maxLength value="2"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="AcctType">
+		<restriction base="string">
+			<maxLength value="20"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="CcyType">
+		<restriction base="string">
+			<maxLength value="3"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="ApTxIdType">
+		<restriction base="string">
+			<maxLength value="24"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="ISearchType">
+		<restriction base="string">
+			<maxLength value="100"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="DateModeType">
+		<restriction base="string">
+			<maxLength value="2"></maxLength>
+		</restriction>
+	</simpleType>
+	<simpleType name="DateTimeType">
+		<restriction base="string">
+			<maxLength value="14"></maxLength>
+		</restriction>
+	</simpleType>
+</schema>
