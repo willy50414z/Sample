@@ -3,6 +3,8 @@ spring:
     mode: HTML
     encoding: UTF-8
     cache: false
+  profiles:
+      active: sit
 
   datasource:
     driver-class-name: org.h2.Driver

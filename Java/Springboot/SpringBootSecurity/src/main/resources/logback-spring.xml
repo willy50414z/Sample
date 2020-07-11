@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+	<Property name="logPattern" value="%d{YYYY-MM-dd HH:mm:ss} %-5p - %m%n" />
+	<Property name="maxLogSize" value="3MB" />
+	<Property name="maxHistory" value="30" />
+	<!-- 控制台輸出 -->
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+	</appender>
+	<springProfile name="sit">
+		<root level="DEBUG">
+			<appender-ref ref="Console" />
+		</root>
+	</springProfile>
+</configuration>
