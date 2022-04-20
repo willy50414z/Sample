@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.springframework.org/schema/tx
+                     http://www.springframework.org/schema/tx/spring-tx.xsd
+                     http://www.springframework.org/schema/aop
+                     http://www.springframework.org/schema/aop/spring-aop.xsd ">
+
+	<!-- 宣告交易管理器 -->
+	<bean id="myHibTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 基於@Transactional註釋模式的交易管理 -->
+	<!-- <tx:annotation-driven transaction-manager="myHibTransactionManager"/> -->
+
+	<!-- 定義交易知會 -->
+	<tx:advice id="txAdvice" transaction-manager="myHibTransactionManager">
+		<!-- 指定交易傳播規則 -->
+		<tx:attributes>
+			<!-- 對get打頭的方法套用SUPPORTS交易規則 -->
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<!-- 對其他方法套用REQUIRED交易規則 -->
+			<tx:method name="*" propagation="REQUIRED"></tx:method>
+		</tx:attributes>
+	</tx:advice>
+
+
+
+	<!-- 定義BasicDataSource資料源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 指定連線資料庫的JDBC驅動 -->
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<!-- 指定資料庫所用的url -->
+		<property name="url"
+			value="jdbc:sqlserver://127.0.0.1:1803;databaseName=TestDB;">
+		</property>
+		<!-- 指定連線資料庫的使用者名稱 -->
+		<property name="username" value="GMS"></property>
+		<!-- 指定連線資料庫的密碼 -->
+		<property name="password" value="GMS"></property>
+	</bean>
+
+	<!-- 定義Hibernate的SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 將上面定義的資料源dataSource植入到LocalSessionFactoryBean類別的sessionFactory屬性 -->
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 設定Hibernate的關聯屬性 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 設定Hibernate的資料庫方言 -->
+				<!-- <prop key="hibernate.dialect"> -->
+				<!-- org.hibernate.dialect.MySQLDialect -->
+				<!-- </prop> -->
+
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/ssh2test1/entity/Users.hbm.xml</value>
+				<!-- <value>com/ssh2test1/entity/Account.hbm.xml</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<!-- UserManagerAction 定義UserDAOImpl類別案例，並將已經建立LocalSessionFactoryBean的案例 
+		sessionFactory相依植入到UserDAOImpl類別所繼承的 HibernateDaoSupport 的sessionFactory屬性 -->
+	<bean id="userDAO" class="com.ssh2test1.dao.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 定義AccountDAOImpl類別案例，並將已經建立LocalSessionFactoryBean的案例 sessionFactory相依植入到UserDAOImpl類別所繼承的 
+		HibernateDaoSupport 的sessionFactory屬性 -->
+	<bean id="accountDAO" class="com.ssh2test1.dao.AccountDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- 定義UserBizImpl類別案例，並給UserBizImpl類別中的userDAO植入值 -->
+	<bean id="userBiz" class="com.ssh2test1.biz.UserBizImpl">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
+
+	<!-- 定義AccountBizImpl類別案例，並給AccountBizImpl類別中屬性的accountDAO植入值 -->
+	<!-- <bean id="accountBiz" class="com.ssh2test1.biz.AccountBizImpl"> -->
+	<!-- <property name="accountDAO" ref="accountDAO" /> -->
+	<!-- </bean> -->
+
+	<!-- 佈署Struts 2的負責使用者管理的控制器UserManagerAction -->
+	<!-- <bean id="umAction" class="com.ssh2test1.action.UserManagerAction"> -->
+	<!-- <property name="userBiz" ref="userBiz" /> -->
+	<!-- </bean> -->
+
+	<!-- 佈署Struts 2的負責賬戶管理的控制器AccountManager， 並給AccountManager類別中的accountBiz屬性植入值 -->
+	<!-- <bean id="amAction" class="com.ssh2test1.action.AccountManager"> -->
+	<!-- <property name="accountBiz" ref="accountBiz" /> -->
+	<!-- </bean> -->
+
+	<!-- 定義RegAction類別，為其屬性userBiz植入值 -->
+	<!-- <bean id="regAction" class="com.ssh2test1.action.RegAction"> -->
+	<!-- <property name="userBiz" ref="userBiz" /> -->
+	<!-- </bean> -->
+
+
+</beans>

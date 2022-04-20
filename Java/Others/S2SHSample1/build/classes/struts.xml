@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>  
+  <package name="default" extends="struts-default">
+    <!-- 定義doLogin的Action，class屬性使用Spring組態檔中
+                        定義的對應的Bean案例名稱-->
+	<action name="doLogin" class="umAction">	
+	  <!-- 定義處理結果和資源之間的映射關系 -->
+	  <result name="error">error.jsp</result>
+	  <result name="success">success.jsp</result>
+	</action>
+	
+	<!-- 定義doTransfer的Action，class屬性使用Spring組態檔中
+                        定義的AccountManager類別的Bean案例名稱 
+    -->
+	<action name="doTransfer" class="amAction">	
+	  <!-- 定義處理結果和資源之間的映射關系 -->
+	  <result name="error1">error1.jsp</result>
+	  <result name="success1">success1.jsp</result>
+	</action>	
+	
+	<!-- 為RegAction類別中的doCheckUserExists()方法組態映射 -->
+	<action name="doCheckUserExists" class="regAction" method="doCheckUserExists">	
+	 <result></result>
+	</action>	
+	<!-- 為RegAction類別中的reg()方法組態映射 -->
+	<action name="reg" class="regAction" method="reg">	
+	  <result></result>
+	</action>	
+  </package>
+  
+  <!--為JsonValidateAction類別組態映射,要求套件名稱延伸為json-default -->
+  <package name="ajax" extends="json-default">
+    <action name="jsonValidateLoginName" class="com.ssh2test1.action.JsonValidateAction">	
+	  <!-- 為action建立 json型態的result-->
+	 <result type="json"></result>
+	</action>
+  </package>
+</struts>    

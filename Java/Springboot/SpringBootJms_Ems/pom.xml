@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.21.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.willy.springboot</groupId>
+	<artifactId>SpringBootJms_Ems</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>SpringBootJms_Ems</name>
+	<!-- FIXME change it to the project's website -->
+	<url>http://www.example.com</url>
+
+	
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.tibco</groupId>
+			<artifactId>tibjms</artifactId>
+			<version>5.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.1.6.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>ch.qos.logback</groupId> -->
+<!-- 			<artifactId>logback-classic</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.jms</groupId> -->
+<!-- 			<artifactId>javax.jms-api</artifactId> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-starter-web</artifactId> -->
+<!-- 		</dependency> -->
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.14</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

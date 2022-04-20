@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<groupId>com.javahonk.purejavatibcopublisherconsumer</groupId>
+	<version>1.0-SNAPSHOT</version>
+	<artifactId>PureJavaTibcoPublisherConsumer</artifactId>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<com.tibco.version>5.1.0</com.tibco.version>
+		<!-- <jms.version>1.1</jms.version> -->
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.tibco</groupId>
+			<artifactId>tibjms</artifactId>
+			<version>${com.tibco.version}</version>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>javax.jms</groupId> -->
+		<!-- <artifactId>jms</artifactId> -->
+		<!-- <version>${jms.version}</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+	</dependencies>
+
+</project>

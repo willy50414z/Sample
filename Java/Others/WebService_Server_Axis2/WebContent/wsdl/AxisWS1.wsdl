@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://axis.teach" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://axis.teach" xmlns:intf="http://axis.teach" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://axis.teach" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="receive">
+    <complexType>
+     <sequence>
+      <element name="msg" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="receiveResponse">
+    <complexType/>
+   </element>
+   <element name="send">
+    <complexType/>
+   </element>
+   <element name="sendResponse">
+    <complexType>
+     <sequence>
+      <element name="sendReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="receiveRequest">
+
+      <wsdl:part element="impl:receive" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="receiveResponse">
+
+      <wsdl:part element="impl:receiveResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendResponse">
+
+      <wsdl:part element="impl:sendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendRequest">
+
+      <wsdl:part element="impl:send" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AxisWS1">
+
+      <wsdl:operation name="receive">
+
+         <wsdl:input message="impl:receiveRequest" name="receiveRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:receiveResponse" name="receiveResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="send">
+
+         <wsdl:input message="impl:sendRequest" name="sendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendResponse" name="sendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AxisWS1SoapBinding" type="impl:AxisWS1">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="receive">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="receiveRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="receiveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="send">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AxisWS1Service">
+
+      <wsdl:port binding="impl:AxisWS1SoapBinding" name="AxisWS1">
+
+         <wsdlsoap:address location="http://localhost:8080/AxisTeach1/services/AxisWS1"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

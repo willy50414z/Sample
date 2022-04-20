@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.configuration.xml.reload" value="TRUE"/>
+	<constant name="struts.devMode" value="TRUE"/>
+
+
+	<package name="helloworld" extends="struts-default">
+		<interceptors>
+			<interceptor name="interceptor1" class="com.willy.interceptor.Testinterceptor">
+			<param name="interceptorkey">abc</param>
+			</interceptor>
+			<interceptor-stack name="test">
+<!-- 				<interceptor-ref name=""></interceptor-ref> -->
+			</interceptor-stack>
+		</interceptors>
+	
+	
+		<default-action-ref name="hello"></default-action-ref>
+		<action name="hello" class="com.learnWeb.struts2.HelloWorldAction">
+			<result name="success">/HelloWorld.jsp</result>
+		</action>
+		<action name="hello1" class="com.learnWeb.struts2.HelloWorldAction">
+			<result name="success">/HelloWorld.jsp</result>
+		</action>
+		<action name="*Book" class="com.learnWeb.struts2.HelloWorldAction"
+			method="addbook">
+			<result name="success">/HelloWorld.jsp?name={0}</result>
+		</action>
+		<action name="objectAndInterceptor" class="com.learnWeb.struts2.HelloWorldAction"
+			method="object">
+			<interceptor-ref name="interceptor1">
+				<param name="excludeMethods">object</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success">/HelloWorld.jsp</result>
+			
+		</action>
+		
+		
+		
+	</package>
+
+
+
+</struts>

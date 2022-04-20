@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+<!-- 配置ActionForm -->
+  <form-beans>
+    <form-bean name="IndexActionForm" type="com.willy.strutsActionForm.IndexActionForm" />
+    <form-bean name="TagActionForm" type="com.willy.strutsActionForm.TagActionForm" />
+    </form-beans>
+<!-- 配置Action 導向 -->
+<action-mappings>
+    <action  input="/index.jsp" name="IndexActionForm" path="/IndexAction" scope="request" type="com.willy.strutsAction.IndexAction" validate="true">
+      <forward name="success" path="/success.jsp" />
+      <forward name="represent" path="/represent.jsp" />
+    </action>
+    <action  input="/success.jsp" name="TagActionForm" path="/TagAction" scope="request" type="com.willy.strutsAction.TagAction" validate="false">
+      <forward name="success" path="/success.jsp" />
+    </action>
+<!--     <action  path="/tagexample" forward="tagexample.jsp"/> -->
+</action-mappings>
+<!-- International -->
+<message-resources parameter="ApplicationResources" />
+
+<!-- DataSources -->
+<data-sources>
+	<data-source type="org.apache.commons.dbcp.BasicDataSource">
+		<set-property value="driverClassName" property="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<set-property value="url" property="jdbc:sqlserver://127.0.0.1:1803;databasename=GMS_P"/>
+		<set-property value="username" property="GMS"/>
+		<set-property value="password" property="GMS"/>
+	</data-source>
+</data-sources>
+</struts-config>

@@ -1,0 +1,31 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AxisWS1Service WSDL service -->
+
+  <service name="AxisWS1" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://axis.teach"/>
+      <parameter name="wsdlServiceElement" value="AxisWS1Service"/>
+      <parameter name="schemaQualified" value="http://axis.teach"/>
+      <parameter name="wsdlServicePort" value="AxisWS1"/>
+      <parameter name="className" value="teach.axis.AxisWS1SoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="AxisWS1"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="receive" qname="operNS:receive" xmlns:operNS="http://axis.teach" soapAction="" >
+        <parameter qname="pns:msg" xmlns:pns="http://axis.teach" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="send" qname="operNS:send" xmlns:operNS="http://axis.teach" returnQName="retNS:sendReturn" xmlns:retNS="http://axis.teach" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="receive send"/>
+
+  </service>
+</deployment>

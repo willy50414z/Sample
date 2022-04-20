@@ -1,0 +1,9 @@
+server:
+  port: 8086
+line: 
+  bot: 
+    channelSecret: 5e8e799cf60f80146e53ec6ec1369bec
+    channelToken: KVvyvg/oTD6BXNT37UcUeNl8oCq1SZMJHN6vMp/6pzSGCLjER+QxDb2JVainLalOYhqet3xQaUZPTFuBBLPwBvmy9hmBW4DdbsvAp+nO7lSNFHTO1dHy+RhYI7h9TyQ8xh8GOXvMrZSvgEg0YOU9NAdB04t89/1O/w1cDnyilFU=
+spring: 
+  mail: 
+    host: 127.0.0.1

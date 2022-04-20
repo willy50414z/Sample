@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willy.sqlMapper.FieldMapListDAO">
+	<resultMap id="BaseResultMap" type="com.willy.entity.FieldMapList">
+		<id column="FieldKind" jdbcType="NVARCHAR" property="fieldkind" />
+		<id column="FieldKey" jdbcType="INTEGER" property="fieldkey" />
+		<result column="FieldValue" jdbcType="NVARCHAR" property="fieldvalue" />
+		<result column="FieldDesc" jdbcType="NVARCHAR" property="fielddesc" />
+		<result column="LastModifyUser" jdbcType="NVARCHAR" property="lastmodifyuser" />
+		<result column="LastModifyDate" jdbcType="TIMESTAMP" property="lastmodifydate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		FieldKind, FieldKey, FieldValue, FieldDesc, LastModifyUser, LastModifyDate
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.util.Map"
+		resultType="com.willy.entity.FieldMapList">
+		select
+		*
+		from FieldMapList
+		where FieldKind = #{fieldkind}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.willy.entity.FieldMapList">
+		delete from FieldMapList
+		where FieldKind = #{fieldkind}
+	</delete>
+
+	<insert id="insert" parameterType="com.willy.entity.FieldMapList">
+		insert into FieldMapList (FieldKind, FieldKey, FieldValue,
+		FieldDesc, LastModifyUser, LastModifyDate
+		)
+		values (#{fieldKind}, #{fieldKey}, #{fieldValue},
+		#{fieldDesc}, #{lastModifyUser}, #{lastModifyDate}
+		)
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.willy.entity.FieldMapList">
+		insert into SIAS..FieldMapList
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fieldkind != null">
+				FieldKind,
+			</if>
+			<if test="fieldkey != null">
+				FieldKey,
+			</if>
+			<if test="fieldvalue != null">
+				FieldValue,
+			</if>
+			<if test="fielddesc != null">
+				FieldDesc,
+			</if>
+			<if test="lastmodifyuser != null">
+				LastModifyUser,
+			</if>
+			<if test="lastmodifydate != null">
+				LastModifyDate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fieldkind != null">
+				#{fieldkind,jdbcType=NVARCHAR},
+			</if>
+			<if test="fieldkey != null">
+				#{fieldkey,jdbcType=INTEGER},
+			</if>
+			<if test="fieldvalue != null">
+				#{fieldvalue,jdbcType=NVARCHAR},
+			</if>
+			<if test="fielddesc != null">
+				#{fielddesc,jdbcType=NVARCHAR},
+			</if>
+			<if test="lastmodifyuser != null">
+				#{lastmodifyuser,jdbcType=NVARCHAR},
+			</if>
+			<if test="lastmodifydate != null">
+				#{lastmodifydate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.willy.entity.FieldMapList">
+		update SIAS..FieldMapList
+		<set>
+			<if test="fieldvalue != null">
+				FieldValue = #{fieldvalue,jdbcType=NVARCHAR},
+			</if>
+			<if test="fielddesc != null">
+				FieldDesc = #{fielddesc,jdbcType=NVARCHAR},
+			</if>
+			<if test="lastmodifyuser != null">
+				LastModifyUser = #{lastmodifyuser,jdbcType=NVARCHAR},
+			</if>
+			<if test="lastmodifydate != null">
+				LastModifyDate = #{lastmodifydate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where FieldKind = #{fieldkind,jdbcType=NVARCHAR}
+		and FieldKey = #{fieldkey,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.willy.entity.FieldMapList">
+		update SIAS..FieldMapList
+		set FieldValue = #{fieldvalue,jdbcType=NVARCHAR},
+		FieldDesc = #{fielddesc,jdbcType=NVARCHAR},
+		LastModifyUser = #{lastmodifyuser,jdbcType=NVARCHAR},
+		LastModifyDate = #{lastmodifydate,jdbcType=TIMESTAMP}
+		where FieldKind = #{fieldkind,jdbcType=NVARCHAR}
+		and FieldKey = #{fieldkey,jdbcType=INTEGER}
+	</update>
+</mapper>

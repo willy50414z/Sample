@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="LoginActionForm" type="com.willy.struts.ActionForm.LoginActionForm" />
+<!-- 		<form-bean name="IndexActionForm" type="com.willy.strutsActionForm.IndexActionForm" /> -->
+	</form-beans>
+	<action-mappings>
+		<action  input="/index.jsp" name="LoginActionForm" path="/login" scope="request" type="com.willy.struts.Action.LoginAction" validate="false">
+      <forward name="success" path="/success.jsp" />
+    </action>
+	</action-mappings>
+	
+<!-- 	<controller> -->
+<!-- 		<set-property value="processorClass" property="org.springframework.web.struts.DelegatingRequestProcessor"/> -->
+<!-- 	</controller> -->
+</struts-config>

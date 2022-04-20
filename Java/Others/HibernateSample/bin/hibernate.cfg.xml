@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<property name="show_sql">true</property><!-- print出SQL -->
+	<property name="connection.url">jdbc:sqlserver://127.0.0.1:1803;databaseName=TestDB;</property>
+	<property name="connection.username">GMS</property>
+	<property name="connection.password">GMS</property>
+	<property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+	<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+	<mapping resource="com/hibtest1/entity/Users.hbm.xml" />
+	<mapping resource="com/hibtest1/entity/Publisher.hbm.xml" />
+</session-factory>
+</hibernate-configuration>
