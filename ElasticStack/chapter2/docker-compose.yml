@@ -17,11 +17,3 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
-  #用來製造LOG
-  es-nginx:
-    image: nginx:1.10
-    container_name: es-nginx
-    volumes:
-      - "${CHAPTER_DIR}/log/:/var/log/nginx" #日志文件挂载
-    ports:
-      - 80:80
