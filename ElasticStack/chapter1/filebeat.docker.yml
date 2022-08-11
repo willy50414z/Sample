@@ -1,0 +1,26 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /usr/share/filebeat/log/*.log #監控的log file
+  tags: ["web", "AP01"] # 自定義顯示資料
+  fields: # 自定義顯示資料
+    author: willy
+    email: willy.cheng@shoalter.com
+  fields_under_root: true #從{fields:{...}} => {....}
+output.console:
+  pretty: true
+  enable: true
+
+#filebeat.autodiscover:
+#  providers:
+#    - type: docker
+#      hints.enabled: true
+#
+#processors:
+#- add_cloud_metadata: ~
+#
+#output.elasticsearch:
+#  hosts: '${ELASTICSEARCH_HOSTS:elasticsearch:9200}'
+#  username: '${ELASTICSEARCH_USERNAME:}'
+#  password: '${ELASTICSEARCH_PASSWORD:}'

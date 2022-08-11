@@ -1,0 +1,12 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /usr/share/filebeat/log/*.log #監控的log file
+  tags: ["web", "AP01"] # 自定義顯示資料
+  fields: # 自定義顯示資料
+    author: willy
+    email: willy.cheng@shoalter.com
+  fields_under_root: true #從{fields:{...}} => {....}
+output.elasticsearch:
+  hosts: ["es-elasticsearch1:9200"]
