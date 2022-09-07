@@ -3,7 +3,7 @@ Activiti 是一個開源的流程引擎，可透過BPMN規範的圖形定義流�
 
 專案中提供幾個案例，測試流程皆放在hk.com.hktvmall.sample.activiti.sample 裡，可透過ActivitiApplication 逐個做測試，對應的BPMN文件放在resources/process裡，可用eclipse plugin(安裝方式如下)或https://demo.bpmn.io/ 檢視 (bpmo.io僅適合用來檢視，他的xml語法定義不適用)
 
-勢力流程簡介: 
+範例流程簡介: 
 
 LeaveSample : 基本請假流程
 
