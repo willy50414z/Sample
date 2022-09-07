@@ -1,0 +1,19 @@
+version: '3.7'
+
+volumes:
+  mysql_data:
+    driver: local
+
+services:
+  mysql-activiti:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: activiti
+      MYSQL_USER: activiti
+      MYSQL_PASSWORD: activiti
+    ports:
+      - 3316:3306
+    volumes:
+      - C:/work/db/mysql_activiti:/var/lib/mysql
+    container_name: mysql-activiti
