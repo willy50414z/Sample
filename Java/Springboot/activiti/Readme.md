@@ -76,4 +76,5 @@ OtherFunction : Activiti其他功能演示
 - HistoryService: 歷史資料管理 (ex. 撈出流程過去行進紀錄)→ 對應HI表
 
 - RepositoryService: 資源管理 (ex. 流程部屬)→ 對應RE表
+
 ![Activiti 使用到的Table](./img/ActivitiService.png)
