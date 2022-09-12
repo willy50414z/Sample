@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  es-beats:
+    image: elastic/filebeat:7.17.3
+    container_name: es-beats
+    command: filebeat -e -strict.perms=false # avoid to occur error "error loading config file: config file ("filebeat.yml") can only be writable by the owner but the permissions are "-rwxrwxrwx""
+    volumes:
+      - "${CHAPTER_DIR}/chapter2/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro" # beats設定檔
+      - "${CHAPTER_DIR}/log/:/usr/share/filebeat/log/" # 讀取的log
+  es-elasticsearch1:
+    image: elasticsearch:7.17.3
+    container_name: es-elasticsearch1
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    ports:
+      - 9200:9200
+      - 9300:9300
