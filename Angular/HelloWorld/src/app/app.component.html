@@ -17,3 +17,22 @@
     <td>5</td>
   </tr>
 </table>
+
+<!--bind event refer to https://angular.tw/guide/event-binding-->
+<!--用(event)註冊呼叫function，還可以把event傳到function裡-->
+<button (click)="onSave($event)">Save</button>
+
+<!--event-->
+<ul>
+  <input type="checkbox" [checked]="checkboxAll" (click)="toggleAll()">
+  <!--[class.completed]="checkbox1" => checkbox1 ? 'completed' : '' -->
+  <!--<li [class.completed]="checkbox1" [class.smallText]="checkbox1">-->
+  <li [class]="{completed:checkbox1, smallText:checkbox1}">
+    <input type="checkbox" [checked]="checkbox1" (click)="toggleCheck1()">
+    <label>111</label>
+  </li>
+  <li [class.completed]="checkbox2">
+    <input type="checkbox" [checked]="checkbox2" (click)="toggleCheck2()">
+    <label>222</label>
+  </li>
+</ul>
