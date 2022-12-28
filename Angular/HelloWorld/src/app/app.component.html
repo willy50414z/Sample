@@ -36,3 +36,11 @@
     <label>222</label>
   </li>
 </ul>
+
+
+<ul>
+  <li *ngFor="let item of toDoList">
+    <input type="checkbox" [checked]="item.status">
+    <label>{{item.thing}}</label>
+  </li>
+</ul>

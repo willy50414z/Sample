@@ -32,4 +32,22 @@ export class AppComponent implements OnInit {
   toggleCheck2(){
     this.checkbox2 = !this.checkbox2
   }
+
+  bgColor="red"
+  width="10px"
+
+  toDoList = [
+    {
+      status: true,
+      thing:"thing1"
+    },
+    {
+      status: true,
+      thing:"thing2"
+    },
+    {
+      status: false,
+      thing:"thing3"
+    }
+  ];
 }
