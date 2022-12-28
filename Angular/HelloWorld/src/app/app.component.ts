@@ -12,5 +12,5 @@ export class AppComponent implements OnInit {
     })
   }
   title = 'HelloWorld';
-  
+  placeholderProp = "placeholderValue"
 }
