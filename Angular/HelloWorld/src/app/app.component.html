@@ -1,3 +1,19 @@
 <button id="bu">button</button>
 <h1>{{title}}</h1><!--文字繫結-->
 <input type="text" [placeholder]="placeholderProp" [attr.abc] = "placeholderProp"><!--property bind / attr bind-->
+
+<table [border]="1">
+  <tr>
+    <td [colSpan]="2">1</td><!--attr bind-->
+  </tr>
+  <tr>
+    <td [attr.colspan]="2">2</td><!--attr bind-->
+  </tr>
+  <tr>
+    <td colspan="2">3</td><!--html attr-->
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+</table>
