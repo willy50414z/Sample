@@ -51,3 +51,16 @@ export class AppComponent {
 #宣告全域變數
 tsconfig.app.json 中有設定include src/**/*.d.ts的檔案，所以可以自己建立一個xxx.d.ts來宣告全域變數
 
+#匯入tools
+1. 到https://www.npmjs.com/搜尋要的套件ex. jquery
+	=>npm i jquery (將jQuery載入node_modules)
+	=>npm i @types/jquery (宣告好jQuery相關變數，就可以不宣告變數，直接使用)
+	**僅讓IDE認識$的標誌了
+
+2. 讓jQuery可以compile成功
+	angular.json的scripts設定js路徑 => "scripts": ["node_modules/jquery/dist/jquery.min.js"]
+	tsconfig.app.json設定匯入的模組compilerOptions:"types": ["jquery"]
+	
+	
+	
+
