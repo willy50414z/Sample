@@ -4,10 +4,10 @@
 
 <table [border]="1">
   <tr>
-    <td [colSpan]="2">1</td><!--attr bind-->
+    <td [colSpan]="2">1</td><!--prop bind 由angular定義變數，所以跟HTML不一樣-->
   </tr>
   <tr>
-    <td [attr.colspan]="2">2</td><!--attr bind-->
+    <td [attr.colspan]="2">2</td><!--attr bind 有attr變數就跟html一樣-->
   </tr>
   <tr>
     <td colspan="2">3</td><!--html attr-->
