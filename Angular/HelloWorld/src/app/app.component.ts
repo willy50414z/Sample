@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo, TodoClass } from './model/todo.model';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
     console.log(event.key)
   }
 
-  toDoList = [
+  toDoList: Todo[] = [
     {
       status: true,
       thing:"thing1"
@@ -59,5 +60,15 @@ export class AppComponent implements OnInit {
   destroy(index:number){
     //從第{{index}}的位置刪除i個物件
     this.toDoList.splice(index,1)
+  }
+  addTodo(todoInput:HTMLInputElement){
+    const todo:Todo = {
+      status:true,
+      thing:todoInput.value
+    }
+    this.toDoList.push(todo)
+  }
+  addTodoClass(todoInput:HTMLInputElement){
+    this.toDoList.push(new TodoClass(todoInput.value))
   }
 }

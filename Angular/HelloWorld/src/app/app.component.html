@@ -37,6 +37,8 @@
   </li>
 </ul>
 
+add by Interface: <input type="text" #todoInput (keyup.enter)="addTodo(todoInput)">
+add by Class: <input type="text" #todoClassInput (keyup.enter)="addTodoClass(todoClassInput)">
 <ul>
   <li *ngFor="let item of toDoList;let i = index">
     <input type="checkbox" [checked]="item.status">
