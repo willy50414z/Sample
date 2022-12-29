@@ -71,4 +71,6 @@ export class AppComponent implements OnInit {
   addTodoClass(todoInput:HTMLInputElement){
     this.toDoList.push(new TodoClass(todoInput.value))
   }
+
+  ngModuleInput = ''
 }

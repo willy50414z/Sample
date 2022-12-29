@@ -50,3 +50,6 @@ add by Class: <input type="text" #todoClassInput (keyup.enter)="addTodoClass(tod
 <!--while change value in INPUT, it will change div width-->
 <div [style.width.px]="width" [style.background-color]="bgColor">123</div>
 <input #widthInput (change)="changeWidth(widthInput)" (keyup)="enterEvent($event)">
+
+<p>ngModel: {{ngModuleInput}}</p>
+<input [(ngModel)]="ngModuleInput" type="text">
