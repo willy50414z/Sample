@@ -50,4 +50,8 @@ export class AppComponent implements OnInit {
       thing:"thing3"
     }
   ];
+  destroy(index:number){
+    //從第{{index}}的位置刪除i個物件
+    this.toDoList.splice(index,1)
+  }
 }

@@ -37,10 +37,10 @@
   </li>
 </ul>
 
-
 <ul>
-  <li *ngFor="let item of toDoList">
+  <li *ngFor="let item of toDoList;let i = index">
     <input type="checkbox" [checked]="item.status">
-    <label>{{item.thing}}</label>
+    <label>{{item.thing}} {{i}}</label>
+    <button class="destroy" (click)="destroy(i)">X</button>
   </li>
 </ul>
