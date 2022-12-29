@@ -44,3 +44,7 @@
     <button class="destroy" (click)="destroy(i)">X</button>
   </li>
 </ul>
+
+<!--while change value in INPUT, it will change div width-->
+<div [style.width.px]="width" [style.background-color]="bgColor">123</div>
+<input #widthInput (change)="changeWidth(widthInput)" (keyup)="enterEvent($event)">

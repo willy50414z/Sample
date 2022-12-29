@@ -34,7 +34,13 @@ export class AppComponent implements OnInit {
   }
 
   bgColor="red"
-  width="10px"
+  width="10"
+  changeWidth(input:HTMLInputElement){
+    this.width = input.value
+  }
+  enterEvent(event:KeyboardEvent){
+    console.log(event.key)
+  }
 
   toDoList = [
     {
