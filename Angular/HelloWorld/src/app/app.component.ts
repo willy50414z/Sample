@@ -73,4 +73,6 @@ export class AppComponent implements OnInit {
   }
 
   ngModuleInput = ''
+
+  date = new Date()
 }
