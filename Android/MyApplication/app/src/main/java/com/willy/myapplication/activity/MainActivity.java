@@ -2,8 +2,17 @@ package com.willy.myapplication.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
 
 
 import com.willy.myapplication.R;
@@ -38,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
         data = new ArrayList<String>();
         data.add("切換Activity");
         data.add("Database功能展示");
-        data.add("Index Tracker");
+        data.add("Index Tracker Setting");
+        data.add("Index Tracker Result");
         data.add("Notification");
+        data.add("Log Viewer");
         for(int i=0;i<20;i++){
             data.add("Item"+i);
         }
@@ -67,6 +79,26 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, IndexTrackerService.class);
         startService(intent);
 
+        if(!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+            goToSettingPage();
+        }
+    }
+
+    private void goToSettingPage() {
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= 26) {// android 8.0引导
+            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+            intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
+        } else if (Build.VERSION.SDK_INT >= 21) { // android 5.0-7.0
+            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+            intent.putExtra("app_package", getPackageName());
+            intent.putExtra("app_uid", getApplicationInfo().uid);
+        } else {//其它
+            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.fromParts("package", getPackageName(), null));
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private class ListViewEventListener implements AdapterView.OnItemClickListener{
@@ -107,15 +139,25 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 3:
                     its = new Intent();
-                    its.setClass(MainActivity.this, NotificationActivity.class);
+                    its.setClass(MainActivity.this, IndexTrackerCheckResult.class);
                     this.superClass.startActivity(its);
                     break;
                 case 4:
-                    its = new Intent("android.intent.action.IndexTrackerResult");
-                    //set parameter for next activity
-                    its.putExtra("indexCheckLog", "indexCheckLog333");
+                    its = new Intent();
+                    its.setClass(MainActivity.this, NotificationActivity.class);
                     this.superClass.startActivity(its);
                     break;
+                case 5:
+                    its = new Intent();
+                    its.setClass(MainActivity.this, LogViewerActivity.class);
+                    this.superClass.startActivity(its);
+                    break;
+//                case 5:
+//                    its = new Intent("android.intent.action.IndexTrackerResult");
+//                    //set parameter for next activity
+//                    its.putExtra("indexCheckLog", "indexCheckLog333");
+//                    this.superClass.startActivity(its);
+//                    break;
             }
         }
     }

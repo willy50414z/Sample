@@ -9,6 +9,7 @@ public class TrackTargetPO {
     private String targetProcArgs;
     private Date lastCheckDate;
     private double lastCheckIndex;
+    private int investAmt;
 
     public TrackTargetPO() {
     }
@@ -59,5 +60,13 @@ public class TrackTargetPO {
 
     public void setLastCheckDate(Date lastCheckDate) {
         this.lastCheckDate = lastCheckDate;
+    }
+
+    public int getInvestAmt() {
+        return investAmt;
+    }
+
+    public void setInvestAmt(int investAmt) {
+        this.investAmt = investAmt;
     }
 }

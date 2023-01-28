@@ -13,4 +13,6 @@ public class Const {
     public final static String _PKG_NAME_PROCESSOR = "com.willy.myapplication.processor";
 
     public final static String _ACTION_INDEX_TRACKER_RESULT = "android.intent.action.IndexTrackerResult";
+
+    public final static String _PATH_LOG_FILE = _APP_DOWNLOAD_FILE_DIR_INDEX_TRACKER + "LOG/log.txt";
 }

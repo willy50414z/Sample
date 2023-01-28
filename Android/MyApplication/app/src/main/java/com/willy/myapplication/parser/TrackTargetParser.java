@@ -18,6 +18,7 @@ public class TrackTargetParser implements CursorParser{
         tt.setTargetProcArgs(c.getString(3));
         tt.setLastCheckDate(TypeUtil.strToDate(c.getString(4)));
         tt.setLastCheckIndex(c.getDouble(5));
+        tt.setInvestAmt(c.getInt(6));
         return tt;
     }
 }

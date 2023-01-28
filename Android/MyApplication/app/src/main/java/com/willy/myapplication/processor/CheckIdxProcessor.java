@@ -49,7 +49,8 @@ public class CheckIdxProcessor {
                         , String.valueOf(oldIndex), String.valueOf(newIndex), String.valueOf(tt.getId()));
 
                 //debug toast
-                Toast.makeText(ctx, oldIndex + "/" + newIndex + "/" + tt.getId() + "/" + tlList.size(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(ctx, oldIndex + "/" + newIndex + "/" + tt.getId() + "/" + tlList.size(), Toast.LENGTH_LONG).show();
+
                 if (tlList.size() > 1) {
                     TrackListPO oldTl = tlList.stream().filter(tl -> (tl.getUpLimit().doubleValue() > oldIndex && tl.getDnLimit().doubleValue() <= oldIndex)).findFirst().orElse(null);
                     TrackListPO newTl = tlList.stream().filter(tl -> (tl.getUpLimit().doubleValue() > newIndex && tl.getDnLimit().doubleValue() <= newIndex)).findFirst().orElse(null);
@@ -65,7 +66,9 @@ public class CheckIdxProcessor {
                     paramMap.put("indexCheckLog", logMsg);
                     notUtil.addNotification("投資金額異動通知", "標的: " + tt.getTargetName() + " 原始投資金額: " + oldTl.getAmt() + " 應更新投資金額: " + newTl.getAmt() + "\n點擊查看詳細資訊"
                             , Const._ACTION_INDEX_TRACKER_RESULT, paramMap);
-                    db.execSQL("update " + TableEnum.TRACK_TARGET + " set LAST_CHECK_DATE=?1, LAST_CHECK_INDEX=?2 where ID=?3", TypeUtil.dateToStr(new Date(), DateUtil.dateFormat_yyyyMMddHHmmss), String.valueOf(newIndex), String.valueOf(tt.getId()));
+                    db.execSQL("update " + TableEnum.TRACK_TARGET + " set LAST_CHECK_DATE=?1, LAST_CHECK_INDEX=?2, INVEST_AMT=?3 where ID=?4", TypeUtil.dateToStr(new Date(), DateUtil.dateFormat_yyyyMMddHHmmss), String.valueOf(newIndex), newTl.getAmt().toString(), String.valueOf(tt.getId()));
+                } else {
+                    db.execSQL("update " + TableEnum.TRACK_TARGET + " set LAST_CHECK_DATE=?1, LAST_CHECK_INDEX=?2 where ID=?4", TypeUtil.dateToStr(new Date(), DateUtil.dateFormat_yyyyMMddHHmmss), String.valueOf(newIndex), String.valueOf(tt.getId()));
                 }
             } catch (Exception e) {
                 Log.e(this.getClass().getSimpleName(), "check track target fail, targetName[" + tt.getTargetName() + "]", e);

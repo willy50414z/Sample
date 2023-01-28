@@ -55,6 +55,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LogViewerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LogViewer" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.IndexTrackerCheckResult"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.IndexTrackerCheckResult" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".service.SampleService"></service>
         <service android:name=".service.IndexTrackerService"></service>

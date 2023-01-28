@@ -48,15 +48,9 @@ public class IndexTrackerActivity extends AppCompatActivity {
         Button addTrackerBtn = findViewById(R.id.addTrackerBtn);
         addTrackerBtn.setOnClickListener(new AddTrackerBtnListener(this));
 
-        Button checkIdxBtn = findViewById(R.id.checkIdxBtn);
-        checkIdxBtn.setOnClickListener(new CheckTargetBtnListener(this));
-
         // Initialize adapter and set adapter to list view
         new IndexTrackerProcessor(this).refreshTrackItemsList();
 
-        if(!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
-            goToSettingPage();
-        }
         //
 //        //
 //        listView = (ListView) findViewById(R.id.testLv);
@@ -87,22 +81,4 @@ public class IndexTrackerActivity extends AppCompatActivity {
 //        Toast.makeText(this, "show toast while start app", Toast.LENGTH_LONG).show();
 
     }
-
-    private void goToSettingPage() {
-        Intent intent = new Intent();
-        if (Build.VERSION.SDK_INT >= 26) {// android 8.0引导
-            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-            intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
-        } else if (Build.VERSION.SDK_INT >= 21) { // android 5.0-7.0
-            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-            intent.putExtra("app_package", getPackageName());
-            intent.putExtra("app_uid", getApplicationInfo().uid);
-        } else {//其它
-            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.fromParts("package", getPackageName(), null));
-        }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
 }
