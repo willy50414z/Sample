@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="initSql">
+        <item>CREATE TABLE IF NOT EXISTS TRACK_TARGET(ID INTEGER PRIMARY KEY AUTOINCREMENT, TARGET_NAME VARCHAR(50), TARGET_PROC VARCHAR(50), TARGET_PROC_ARGS VARCHAR(50), LAST_CHECK_DATE DATETIME, LAST_CHECK_INDEX REAL, INVEST_AMT INTEGER);</item>
+        <item>CREATE TABLE IF NOT EXISTS TRACK_LIST(ID INTEGER PRIMARY KEY AUTOINCREMENT,TRACK_TARGET INTEGER,UP_LIMIT REAL,DN_LIMIT REAL,AMT INTEGER);</item>
+        <item>INSERT INTO TRACK_TARGET VALUES (1, \'台灣加權指數\', \'TAIEX\', null, \'19700101\', 0, 0)</item>
+        <item>INSERT INTO TRACK_TARGET VALUES (2, \'富邦美債20\', \'TPEX\', \'{\"SecuritiesCompanyCode\" : \"00696B\"}\', \'19700101\', 0, 0)</item>
+        <item>INSERT INTO TRACK_TARGET VALUES (3, \'BTC/TWD\', \'BTCTWD\', null, \'19700101\', 0, 0)</item>
+        <item>INSERT INTO TRACK_TARGET VALUES (4, \'國泰智能電動車\', \'TWSE\', \'{\"Code\" : \"00893\"}\', \'19700101\', 0, 0)</item>
+        <item>insert into TRACK_LIST values(1,3,\'2132702.08\',\'1894614.5\',\'10500\');</item>
+        <item>insert into TRACK_LIST values(2,2,\'61.526\',\'56.95\',\'10500\');</item>
+        <item>insert into TRACK_LIST values(3,1,\'19357.068\',\'18619.61\',\'10500\');</item>
+        <item>insert into TRACK_LIST values(4,4,\'19.586\',\'18.25\',\'10500\');</item>
+        <item>insert into TRACK_LIST values(5,3,\'1894614.5\',\'1656526.92\',\'11000\');</item>
+        <item>insert into TRACK_LIST values(6,2,\'56.95\',\'52.374\',\'11000\');</item>
+        <item>insert into TRACK_LIST values(7,1,\'18619.61\',\'17882.152\',\'11000\');</item>
+        <item>insert into TRACK_LIST values(8,4,\'18.25\',\'16.914\',\'11000\');</item>
+        <item>insert into TRACK_LIST values(9,3,\'1656526.92\',\'1418439.34\',\'12000\');</item>
+        <item>insert into TRACK_LIST values(10,2,\'52.374\',\'47.798\',\'12000\');</item>
+        <item>insert into TRACK_LIST values(11,1,\'17882.152\',\'17144.694\',\'12000\');</item>
+        <item>insert into TRACK_LIST values(12,4,\'16.914\',\'15.578\',\'12000\');</item>
+        <item>insert into TRACK_LIST values(13,3,\'1418439.34\',\'1180351.76\',\'14000\');</item>
+        <item>insert into TRACK_LIST values(14,2,\'47.798\',\'43.222\',\'14000\');</item>
+        <item>insert into TRACK_LIST values(15,1,\'17144.694\',\'16407.236\',\'14000\');</item>
+        <item>insert into TRACK_LIST values(16,4,\'15.578\',\'14.242\',\'14000\');</item>
+        <item>insert into TRACK_LIST values(17,3,\'1180351.76\',\'942264.18\',\'18000\');</item>
+        <item>insert into TRACK_LIST values(18,2,\'43.222\',\'38.646\',\'18000\');</item>
+        <item>insert into TRACK_LIST values(19,1,\'16407.236\',\'15669.778\',\'18000\');</item>
+        <item>insert into TRACK_LIST values(20,4,\'14.242\',\'12.906\',\'18000\');</item>
+        <item>insert into TRACK_LIST values(21,3,\'942264.18\',\'704176.6\',\'26000\');</item>
+        <item>insert into TRACK_LIST values(22,2,\'38.646\',\'34.07\',\'26000\');</item>
+        <item>insert into TRACK_LIST values(23,1,\'15669.778\',\'14932.32\',\'26000\');</item>
+        <item>insert into TRACK_LIST values(24,4,\'12.906\',\'11.57\',\'26000\');</item>
+        <item>insert into TRACK_LIST values(25,3,\'704176.6\',\'595366.68\',\'42000\');</item>
+        <item>insert into TRACK_LIST values(26,2,\'34.07\',\'33.556\',\'42000\');</item>
+        <item>insert into TRACK_LIST values(27,1,\'14932.32\',\'13682.124\',\'42000\');</item>
+        <item>insert into TRACK_LIST values(28,4,\'11.57\',\'11.358\',\'42000\');</item>
+        <item>insert into TRACK_LIST values(29,3,\'595366.68\',\'486556.76\',\'74000\');</item>
+        <item>insert into TRACK_LIST values(30,2,\'33.556\',\'33.042\',\'74000\');</item>
+        <item>insert into TRACK_LIST values(31,1,\'13682.124\',\'12431.928\',\'74000\');</item>
+        <item>insert into TRACK_LIST values(32,4,\'11.358\',\'11.146\',\'74000\');</item>
+        <item>insert into TRACK_LIST values(33,3,\'486556.76\',\'377746.84\',\'138000\');</item>
+        <item>insert into TRACK_LIST values(34,2,\'33.042\',\'32.528\',\'138000\');</item>
+        <item>insert into TRACK_LIST values(35,1,\'12431.928\',\'11181.732\',\'138000\');</item>
+        <item>insert into TRACK_LIST values(36,4,\'11.146\',\'10.934\',\'138000\');</item>
+        <item>insert into TRACK_LIST values(37,3,\'377746.84\',\'268936.92\',\'266000\');</item>
+        <item>insert into TRACK_LIST values(38,2,\'32.528\',\'32.014\',\'266000\');</item>
+        <item>insert into TRACK_LIST values(39,1,\'11181.732\',\'9931.536\',\'266000\');</item>
+        <item>insert into TRACK_LIST values(40,4,\'10.934\',\'10.722\',\'266000\');</item>
+        <item>insert into TRACK_LIST values(41,3,\'268936.92\',\'160127\',\'522000\');</item>
+        <item>insert into TRACK_LIST values(42,2,\'32.014\',\'31.5\',\'522000\');</item>
+        <item>insert into TRACK_LIST values(43,1,\'9931.536\',\'8681.34\',\'522000\');</item>
+        <item>insert into TRACK_LIST values(44,4,\'10.722\',\'10.51\',\'522000\');</item>
+        <item>insert into TRACK_LIST values(45,3,\'160127\',\'0\',\'1034000\');</item>
+        <item>insert into TRACK_LIST values(46,2,\'31.5\',\'0\',\'1034000\');</item>
+        <item>insert into TRACK_LIST values(47,1,\'8681.34\',\'0\',\'1034000\');</item>
+        <item>insert into TRACK_LIST values(48,4,\'10.51\',\'0\',\'1034000\');</item>
+    </string-array>
+</resources>

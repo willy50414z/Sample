@@ -1,0 +1,57 @@
+<button id="bu">button</button>
+<h1>{{title}}</h1><!--文字繫結-->
+<input type="text" [placeholder]="placeholderProp" [attr.abc] = "placeholderProp"><!--property bind / attr bind-->
+
+<table [border]="1">
+  <tr>
+    <td [colSpan]="2">1</td><!--prop bind 由angular定義變數，所以跟HTML不一樣-->
+  </tr>
+  <tr>
+    <td [attr.colspan]="2">2</td><!--attr bind 有attr變數就跟html一樣-->
+  </tr>
+  <tr>
+    <td colspan="2">3</td><!--html attr-->
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+</table>
+
+<!--bind event refer to https://angular.tw/guide/event-binding-->
+<!--用(event)註冊呼叫function，還可以把event傳到function裡-->
+<button (click)="onSave($event)">Save</button>
+
+<!--event-->
+<ul>
+  <input type="checkbox" [checked]="checkboxAll" (click)="toggleAll()">
+  <!--[class.completed]="checkbox1" => checkbox1 ? 'completed' : '' -->
+  <!--<li [class.completed]="checkbox1" [class.smallText]="checkbox1">-->
+  <li [class]="{completed:checkbox1, smallText:checkbox1}">
+    <input type="checkbox" [checked]="checkbox1" (click)="toggleCheck1()">
+    <label>111</label>
+  </li>
+  <li [class.completed]="checkbox2">
+    <input type="checkbox" [checked]="checkbox2" (click)="toggleCheck2()">
+    <label>222</label>
+  </li>
+</ul>
+
+add by Interface: <input type="text" #todoInput (keyup.enter)="addTodo(todoInput)">
+add by Class: <input type="text" #todoClassInput (keyup.enter)="addTodoClass(todoClassInput)">
+<ul>
+  <li *ngFor="let item of toDoList;let i = index">
+    <input type="checkbox" [checked]="item.status">
+    <label>{{item.thing}} {{i}}</label>
+    <button class="destroy" (click)="destroy(i)">X</button>
+  </li>
+</ul>
+
+<!--while change value in INPUT, it will change div width-->
+<div [style.width.px]="width" [style.background-color]="bgColor">123</div>
+<input #widthInput (change)="changeWidth(widthInput)" (keyup)="enterEvent($event)">
+
+<p>ngModel: {{ngModuleInput}}</p>
+<input [(ngModel)]="ngModuleInput" type="text">
+
+{{date | date:'yyyy-MM-dd'}}

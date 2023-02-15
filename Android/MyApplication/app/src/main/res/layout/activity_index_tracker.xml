@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstrantLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/targetTv"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:text="標的: " />
+
+        <Spinner
+            android:id="@+id/targetSpinner"
+            android:layout_width="249dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/dnLimitTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下限: " />
+
+        <EditText
+            android:id="@+id/dnLimitNum"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/upLimitTv"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:text="上限: " />
+
+        <EditText
+            android:id="@+id/upLimitNum"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="number" />
+
+
+
+        <TextView
+            android:id="@+id/amtTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金額: " />
+
+        <EditText
+            android:id="@+id/amtNum"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/addTrackerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2196F3"
+            android:text="Add Tracker" />
+
+        <ListView
+            android:id="@+id/trackingList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

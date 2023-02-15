@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NotificationActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/channelIdTv"
+                    android:layout_width="212dp"
+                    android:layout_height="wrap_content"
+                    android:text="channelId: " />
+
+                <EditText
+                    android:id="@+id/channelId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:text="channelId" />
+
+                <TextView
+                    android:id="@+id/channelNameTv"
+                    android:layout_width="212dp"
+                    android:layout_height="wrap_content"
+                    android:text="channelName: " />
+
+                <EditText
+                    android:id="@+id/channelName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:text="channelName" />
+
+                <TextView
+                    android:id="@+id/notifyIdTv"
+                    android:layout_width="212dp"
+                    android:layout_height="wrap_content"
+                    android:text="notifyId: " />
+
+                <EditText
+                    android:id="@+id/notifyId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/notifyTitleTv"
+                    android:layout_width="212dp"
+                    android:layout_height="wrap_content"
+                    android:text="notifyTitle: " />
+
+                <EditText
+                    android:id="@+id/notifyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:text="title" />
+
+                <TextView
+                    android:id="@+id/notifyMessageTv"
+                    android:layout_width="212dp"
+                    android:layout_height="wrap_content"
+                    android:text="notifyMessage: " />
+
+                <EditText
+                    android:id="@+id/notifyMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:text="message" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Action: " />
+
+                <EditText
+                    android:id="@+id/notifyActionEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:text="android.intent.action.IndexTrackerResult" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IntentMsg: " />
+
+                <EditText
+                    android:id="@+id/intentMsgEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:text="{&quot;indexCheckLog&quot;:&quot;msg&quot;}" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PendingIntent: " />
+
+                <Spinner
+                    android:id="@+id/intentSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/notifyBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="發送通知"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/clearAllNotificationBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="清除通知" />
+        </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

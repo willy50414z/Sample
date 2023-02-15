@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="updateSql">
+        <item>DROP TABLE TRACK_TARGET;</item>
+        <item>DROP TRACK_LIST;</item>
+    </string-array>
+</resources>

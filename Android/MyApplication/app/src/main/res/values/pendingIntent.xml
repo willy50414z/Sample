@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pendingIntent">
+        <item>FLAG_IMMUTABLE</item>
+        <item>FLAG_MUTABLE</item>
+    </string-array>
+</resources>
