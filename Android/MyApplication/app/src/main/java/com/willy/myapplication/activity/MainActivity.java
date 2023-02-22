@@ -3,16 +3,9 @@ package com.willy.myapplication.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +19,6 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.willy.myapplication.R;
 import com.willy.myapplication.service.IndexTrackerService;
-import com.willy.myapplication.service.SampleService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         data.add("Index Tracker Result");
         data.add("Notification");
         data.add("Log Viewer");
+        data.add("Download File");
         for(int i=0;i<20;i++){
             data.add("Item"+i);
         }
@@ -76,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(MainActivity.this, SampleService.class);
 //        startService(intent);
 
-        Intent intent = new Intent(MainActivity.this, IndexTrackerService.class);
-        startService(intent);
+//        Intent intent = new Intent(MainActivity.this, IndexTrackerService.class);
+//        startService(intent);
 
         if(!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
             goToSettingPage();
@@ -134,12 +127,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 2:
                     its = new Intent();
-                    its.setClass(MainActivity.this, IndexTrackerActivity.class);
+                    its.setClass(MainActivity.this, IndexTrackerSettingActivity.class);
                     this.superClass.startActivity(its);
                     break;
                 case 3:
                     its = new Intent();
-                    its.setClass(MainActivity.this, IndexTrackerCheckResult.class);
+                    its.setClass(MainActivity.this, IndexTrackerCheckResultActivity.class);
                     this.superClass.startActivity(its);
                     break;
                 case 4:
@@ -150,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
                 case 5:
                     its = new Intent();
                     its.setClass(MainActivity.this, LogViewerActivity.class);
+                    this.superClass.startActivity(its);
+                    break;
+                case 6:
+                    its = new Intent();
+                    its.setClass(MainActivity.this, DownloadFileActivity.class);
                     this.superClass.startActivity(its);
                     break;
 //                case 5:

@@ -33,9 +33,15 @@ public class IndexTrackerService extends Service {
                 Cursor c = db.query("select min(LAST_CHECK_DATE) from TRACK_TARGET");
                 c.moveToFirst();
                 if (!c.getString(0).substring(0, 8).equals(TypeUtil.dateToStr(new Date(), DateUtil.dateFormat_yyyyMMdd))
-                        && TypeUtil.dateToStr(new Date(), "HH").equals("18")) {
+                        && Integer.valueOf(TypeUtil.dateToStr(new Date(), "HH")) > 18) {
                     cp.check();
-                    Log.d(this.getClass().getSimpleName(), "lastCheckTime[" + c.getString(0) + "] run job");
+
+                    //wait 30 seconds then run again if any check fail
+                    try {
+                        Thread.sleep(30 * 1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     try {
                         //wait 1 hour
