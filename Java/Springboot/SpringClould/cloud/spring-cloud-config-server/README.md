@@ -26,3 +26,6 @@ Spring cloud配置中心，讓cloud各service能夠動態存取更新config
     http://127.0.0.1:3301/config-single-client/dev/
     
     http://127.0.0.1:3301/config-single-client/dev/master
+
+# 參考
+https://www.cnblogs.com/fengzheng/p/11242128.html
