@@ -21,11 +21,6 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserMapper userDao;
     @Autowired
     private RoleMapper roleDao;
-public static void main(String[] args) {
-	System.out.println(DigestUtils.md5DigestAsHex("willy50414z".toString().getBytes()));
-
-
-}
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         //查数据库
