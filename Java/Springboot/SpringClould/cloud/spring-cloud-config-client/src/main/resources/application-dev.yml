@@ -1,0 +1,7 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:3301
+    activate:
+      on-profile: dev
+  application:
+    name: config-single-client
