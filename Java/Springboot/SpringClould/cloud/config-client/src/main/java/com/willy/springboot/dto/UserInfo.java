@@ -1,4 +1,4 @@
-package com.willy.springboot.config;
+package com.willy.springboot.dto;
 
 import lombok.Data;
 

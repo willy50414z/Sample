@@ -1,6 +1,6 @@
 package com.willy.springboot;
 
-import com.willy.springboot.config.ConfigData;
+import com.willy.springboot.dto.ConfigData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
