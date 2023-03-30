@@ -1,0 +1,28 @@
+syntax = "proto3";//編譯模組名稱
+package proto; //包名和其他應用端一致
+option java_generic_services = true;//是否生成Service代碼
+option java_multiple_files = true;//(java_multiple_files)?下面定義的類會分成多檔案:下面定義的類會都定義在java_outer_classname這個檔案裡
+option java_package = "com.willy.grpc.proto";//grpc檔案產出的package路徑
+option java_outer_classname = "HelloWorldProto"; //外層Java類名，下面定義的類會使用此類中的method
+//介面請求入參
+message HelloRequest{
+    string request = 1;//field index， message binary format 中辨認欄位用，只要確保適unique即可，且1-15只需要一個byte儲存，故較推薦使用
+    string request1 = 2;
+}
+//介面返回出參
+message HelloResponse{
+    string response = 1;
+}
+//定義介面
+service HelloService{
+    //一個簡單的rpc
+    rpc HelloWorld(HelloRequest) returns (HelloResponse){}
+    //一個伺服器端流式rpc
+    rpc HelloWorldServerStream(HelloRequest) returns (stream HelloResponse){}
+    //一個用戶端流式rpc
+    rpc HelloWorldClientStream(stream HelloRequest) returns (HelloResponse){}
+    //一個用戶端和伺服器端雙向流式rpc
+    rpc HelloWorldClientAndServerStream(stream HelloRequest) returns (stream HelloResponse){}
+}
+
+//詳細編寫方式參考: https://pjchender.dev/internet/note-protocol-buffer/
