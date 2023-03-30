@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  es-elasticsearch:
+    image: elasticsearch:7.17.3
+    container_name: es-elasticsearch
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    volumes:
+        - E:/Code/Java/Sample/ElasticStack/plugin:/usr/share/elasticsearch/plugins
+        - E:/Code/Java/Sample/ElasticStack/cc:/usr/share/elasticsearch/cc
+    ports:
+      - 9200:9200
+      - 9300:9300

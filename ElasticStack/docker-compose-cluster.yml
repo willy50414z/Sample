@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  es-elasticsearch1:
+    image: elasticsearch:7.17.3
+    container_name: es-elasticsearch1
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    volumes:
+        - E:/Code/Java/Sample/ElasticStack/plugin:/usr/share/elasticsearch/plugins
+        - E:/Code/Java/Sample/ElasticStack/config/cluster/node1:/usr/share/elasticsearch/config
+    ports:
+      - 9501:9200
+      - 9601:9300
+  es-elasticsearch2:
+    image: elasticsearch:7.17.3
+    container_name: es-elasticsearch2
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    volumes:
+        - E:/Code/Java/Sample/ElasticStack/plugin:/usr/share/elasticsearch/plugins
+    #    - E:/Code/Java/Sample/ElasticStack/config/cluster/node2:/usr/share/elasticsearch/config
+    ports:
+      - 9502:9200
+      - 9602:9300
+  es-elasticsearch3:
+    image: elasticsearch:7.17.3
+    container_name: es-elasticsearch3
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    volumes:
+        - E:/Code/Java/Sample/ElasticStack/plugin:/usr/share/elasticsearch/plugins
+        - E:/Code/Java/Sample/ElasticStack/config/cluster/node3:/usr/share/elasticsearch/config
+    ports:
+      - 9503:9200
+      - 9603:9300
