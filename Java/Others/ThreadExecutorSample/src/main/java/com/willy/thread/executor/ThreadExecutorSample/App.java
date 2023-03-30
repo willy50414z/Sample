@@ -1,5 +1,8 @@
 package com.willy.thread.executor.ThreadExecutorSample;
 
+import sun.misc.Unsafe;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -9,8 +12,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class App {
 	/**
@@ -40,6 +44,18 @@ public class App {
 	 *  	
 	 */
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
+//		//lambdas
+//		new Thread(() -> { // Lambda Expression
+//			for(int i=1; i <= 5; i++) {
+//				System.out.println("Child Thread: "+ i);
+//				try {
+//					Thread.sleep(500);
+//				} catch(Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
+
 //		// 繼承Thread
 //		ExtendThreadSample s = null;
 //		for (int i = 0; i < 10; i++) {
@@ -51,7 +67,7 @@ public class App {
 //		} catch (IllegalThreadStateException e) {
 //			System.err.println("繼承Thread的class只能run start一次");
 //		}
-//	
+//
 //		// 實現Runnable
 //		Thread t = null;
 //		ImplementRunnableSample is = new ImplementRunnableSample();
@@ -62,66 +78,162 @@ public class App {
 //		try {
 //			t.start();
 //		} catch (IllegalThreadStateException e) {
-//			System.err.println("實現Runnable的class只能run start一次");
+//			System.err.println("實現Runnable - 實現Runnable的class只能run start一次");
 //		}
-//	
+//
 //		// 實現callable
 //		List<FutureTask<Integer>> taskList = new ArrayList<FutureTask<Integer>>();
-//	
 //		for (int i = 0; i < 3; i++) {
 //			FutureTask<Integer> futureTask = new FutureTask<Integer>(new ImplementCallableSample());
 //			taskList.add(futureTask);
 //		}
-//	
 //		for (FutureTask<Integer> f : taskList) {
 //			new Thread(f).start();
 //		}
-//	
 //		Thread.sleep(3000);
 //		for (FutureTask<Integer> f : taskList) {
 //			if (f.isDone()) {
-//				System.out.printf("我是第%s次執行的！\n", f.get());
+//				System.out.printf("實現callable - 我是第%s次執行的！\n", f.get());
 //			}
 //		}
-//		
+//
 //		//TreadPoolExecutor - CacheThreadPool
 //	    new CacheThreadPoolSample().exec();
-//	    
+//
 //	    //TreadPoolExecutor - FixThreadPool
 //	    new FixedThreadPoolSample().exec();
-		
-	    //TreadPoolExecutor - FixThreadPool WithCallable
-	    new FixedThreadPoolWithCallableSample().exec();
-//	    
+
+//	    //TreadPoolExecutor - FixThreadPool WithCallable
+//	    new FixedThreadPoolWithCallableSample().exec();
+//
 //	    //TreadPoolExecutor - SingleThreadExecutor
 //	    new SingleThreadExecutorSample().exec();
-//        
+//
 //		//ScheduledThreadPoolExecutor - ScheduledThreadExecutor
 //		new ScheduledThreadExecutorSample().exec();
-//		    
+//
 //		//ScheduledThreadPoolExecutor - SingleScheduledThreadExecutor
 //		new SingleScheduledThreadExecutorSample().exec();
-//		
-//		//Volatile關鍵字範例
-//		//可見性
+//
+		//Volatile
+		//可見性
 //		VolatileVisibleSample s = new VolatileVisibleSample();
 //		s.exec();
-//		//非原子性
+		//非原子性
 //		VolatileUnatomicSample vaSample = new VolatileUnatomicSample();
 //		vaSample.exec();
+
+//		//synchronized - unsafe
+//		//sharedState++ 未被保護，導致多個線程同時取用導致計算錯誤
+//		SynchronizedSample ss = new SynchronizedSample();
+//		for(int i=0;i<2;i++) {
+//			Thread t1 = new Thread(() -> {
+//				ss.nonSafeAction();
+//			});
+//			t1.start();
+//		}
+
+//		//synchronized - safe
+//		SynchronizedSample ss1 = new SynchronizedSample();
+//		for(int i=0;i<2;i++) {
+//			Thread t2 = new Thread(() -> {
+//				ss1.safeAction();
+//			});
+//			t2.start();
+//		}
+
+//		//synchronized - safe by atomic class
+//		SynchronizedSample ss2 = new SynchronizedSample();
+//		for(int i=0;i<2;i++) {
+//			Thread t3 = new Thread(() -> {
+//				ss2.nonSafeActionButAtomic();
+//			});
+//			t3.start();
+//		}
+
+//		//CAS - safe
+//		CasSample cs1 = new CasSample();
+//		for(int i=0;i<2;i++) {
+//			Thread t4 = new Thread(() -> {
+//				cs1.implementByAtomic();
+//			});
+//			t4.start();
+//		}
+
+	}
+}
+
+class CasSample {
+	private static AtomicBoolean flag = new AtomicBoolean(true);
+
+	/**
+	 * thread-0會將flag改為false，並等待5秒
+	 * thread-1要修改值時會比對flag是否為true，不是的話就會retry
+	 */
+	public void implementByAtomic()
+	{
+		System.out.println("thread:"+Thread.currentThread().getName()+";flag:"+flag.get());
+		if (flag.compareAndSet(true,false)){
+			System.out.println(Thread.currentThread().getName()+" - "+flag.get());
+			try{Thread.sleep(5000);}catch (InterruptedException e){}
+			flag.set(true);//讓Thread-1通過
+		}else{
+			System.out.println("重試機制thread:"+Thread.currentThread().getName()+";flag:"+flag.get());
+			try{Thread.sleep(500);}catch (InterruptedException e){}
+			implementByAtomic();
+		}
+	}
+}
+
+class SynchronizedSample
+{
+	private int intSharedState = 0;
+	private AtomicInteger atomicInteger = new AtomicInteger(0);
+	public void nonSafeAction()
+	{
+		for(int i=0;i<123456789;i++)
+		{
+			intSharedState++;
+		}
+		System.out.println("未透過synchronized保證線程安全" + Thread.currentThread().getName() + " - intSharedState[" + intSharedState + "]");
+	}
+
+	public void nonSafeActionButAtomic()
+	{
+		for(int i=0;i<123456789;i++)
+		{
+			atomicInteger.getAndIncrement();
+		}
+		//等待另一個線程算完，否則一個先算完會得到不同的答案
+		try{Thread.sleep(2000);}catch (InterruptedException e) {}
+		System.out.println("透過原子操作類AtomicInteger保證線程安全" + Thread.currentThread().getName() + " - atomicInteger[" + atomicInteger + "]");
+	}
+
+	public void safeAction()
+	{
+		synchronized (this) //以this作為互斥單元
+		{
+			for(int i=0;i<123456789;i++)
+			{
+				intSharedState++;
+			}
+		}
+		//等待另一個線程算完，否則一個先算完會得到不同的答案
+		try{Thread.sleep(2000);}catch (InterruptedException e) {}
+		System.out.println("透過synchronized保證線程安全" + Thread.currentThread().getName() + " - intSharedState[" + intSharedState + "]");
 	}
 }
 
 class ExtendThreadSample extends Thread {
 	@Override
 	public void run() {
-		System.out.println("run Thread " + Thread.currentThread().getName() + " thread");
+		System.out.println("繼承Thread - run Thread " + Thread.currentThread().getName() + " thread");
 	}
 }
 
 class ImplementRunnableSample implements Runnable {
 	public void run() {
-		System.out.println("run Runnable " + Thread.currentThread().getName() + " thread");
+		System.out.println("實現Runnable - run Runnable " + Thread.currentThread().getName() + " thread");
 	}
 }
 
@@ -129,7 +241,7 @@ class ImplementCallableSample implements Callable<Integer> {
 	private volatile static int count = 0;
 
 	public Integer call() throws Exception {
-		System.out.println("run Callable " + Thread.currentThread().getName() + " thread");
+		System.out.println("實現callable - run Callable " + Thread.currentThread().getName() + " thread");
 		count++;
 		return count;
 	}
@@ -253,7 +365,7 @@ class VolatileVisibleSample{
 		s.start();
 		Thread.sleep(1000);
 		s.setRunning(false);
-		System.out.println("setRunning false complete");
+		System.out.println("Thread[" + Thread.currentThread().getName() + "]setRunning false complete");
 	}
 }
 
@@ -263,20 +375,17 @@ class VolatileVisibleImpl extends Thread {
 	//設定了volatile，讓此thread強制從main thread取isRunning變數，避免取不到而產生無窮迴圈
     private volatile boolean isRunning = true;
 
-    public boolean isRunning() {
-        return isRunning;
-    }
-
     public void setRunning(boolean isRunning) {
-        this.isRunning = isRunning;
+		 System.out.println("Thread[" + Thread.currentThread().getName() + "] set isRunning[" + isRunning + "]");
+		 this.isRunning = isRunning;
     }
 
     @Override
     public void run() {
-        System.out.println("進入到run方法中了");
+        System.out.println("Thread[" + Thread.currentThread().getName() + "]開始無窮迴圈");
         while (isRunning == true) {
         }
-        System.out.println("執行緒執行完成了");
+        System.out.println("Thread[" + Thread.currentThread().getName() + "]執行緒執行完成了");
     }
 }
 class VolatileUnatomicSample {
