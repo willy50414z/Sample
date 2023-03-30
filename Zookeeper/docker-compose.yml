@@ -1,0 +1,70 @@
+version: "3.5"
+
+services:
+  zookeeper_1:
+    image: zookeeper:3.8
+    container_name: zookeeper_1
+    restart: always
+    hostname: zookeeper-0.zookeeper
+    volumes:
+      - ${ZOOKEEPER_1_DATA}:/data
+    ports:
+      - 2291:2181
+      - 7111:7000
+    environment:
+      ZOO_MY_ID: 1 #server id
+      ZOO_SERVERS: server.1=zookeeper-0.zookeeper:2888:3888;2181 server.2=zookeeper-1.zookeeper:2888:3888;2181 server.3=zookeeper-2.zookeeper:2888:3888;2181 # server.${ZOO_MY_ID}=${hostname}:${與leader通訊port}:${Leader掛了後重選舉的port}
+      ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
+    networks:
+      zk_for_solr_network:
+      zookeeper_network:
+          ipv4_address: 182.16.218.240
+      
+  zookeeper_2:
+    image: zookeeper:3.8
+    container_name: zookeeper_2
+    restart: always
+    hostname: zookeeper-1.zookeeper
+    volumes:
+      - ${ZOOKEEPER_2_DATA}:/data
+    ports:
+      - 2292:2181
+      - 7112:7000
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zookeeper-0.zookeeper:2888:3888;2181 server.2=zookeeper-1.zookeeper:2888:3888;2181 server.3=zookeeper-2.zookeeper:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
+    networks:
+      zookeeper_network:
+          ipv4_address: 182.16.218.241
+      zk_for_solr_network:
+  zookeeper_3:
+    image: zookeeper:3.8
+    container_name: zookeeper_3
+    restart: always
+    hostname: zookeeper-2.zookeeper
+    volumes:
+      - ${ZOOKEEPER_3_DATA}:/data
+    ports:
+      - 2293:2181
+      - 7113:7000
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zookeeper-0.zookeeper:2888:3888;2181 server.2=zookeeper-1.zookeeper:2888:3888;2181 server.3=zookeeper-2.zookeeper:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
+    networks:
+      zookeeper_network:
+          ipv4_address: 182.16.218.242
+      zk_for_solr_network:
+networks:
+  zookeeper_network:
+    ipam:
+      driver: default
+      config: # fix the internal IP to avoid redis IP warp causing slave not found
+        - subnet: 182.16.218.0/24
+  zk_for_solr_network:
+    external: true
+        
