@@ -13,12 +13,19 @@ import java.util.concurrent.CountDownLatch;
 
 
 @Component
-public class ZkDao implements Watcher
+public class ZkDao
 {
 	ZooKeeper zooKeeper;
 	public ZkDao() throws IOException
 	{
-		zooKeeper = new ZooKeeper("127.0.0.1:2292", 500000, this);
+		zooKeeper = new ZooKeeper("127.0.0.1:2291,127.0.0.1:2292,127.0.0.1:2293", 500000, new Watcher()
+		{
+			@Override
+			public void process(WatchedEvent watchedEvent)
+			{
+				System.out.println("Receive watched event：" + watchedEvent);
+			}
+		});
 	}
 
 	/**
@@ -28,7 +35,7 @@ public class ZkDao implements Watcher
 	 * 臨時順序節點 ephemeral sequental
 	 */
 	//add
-	public void add(String path, String value){
+	public void create(String path, String value){
 		try {
 			String node = zooKeeper.create(path, value.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 			System.out.println("create node: " + node);
@@ -46,14 +53,4 @@ public class ZkDao implements Watcher
 
 	//query
 
-
-	@Override
-	public void process(WatchedEvent event)
-	{
-		CountDownLatch latch = new CountDownLatch(1);
-		System.out.println("Receive watched event：" + event);
-		if (Event.KeeperState.SyncConnected == event.getState()) {
-			latch.countDown();
-		}
-	}
 }
