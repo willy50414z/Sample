@@ -8,11 +8,3 @@ info:
   company.name: willy
   build.aetifactId: @project.artifactId@
   build.version: @project.version@
-management:
-  info:
-    env:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"

@@ -9,3 +9,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:3303/eureka/
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
