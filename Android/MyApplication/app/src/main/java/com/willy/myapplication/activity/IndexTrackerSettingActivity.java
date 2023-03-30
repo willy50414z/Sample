@@ -1,35 +1,26 @@
 package com.willy.myapplication.activity;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
 import com.willy.myapplication.R;
 import com.willy.myapplication.listener.indexTracker.AddTrackerBtnListener;
-import com.willy.myapplication.listener.indexTracker.CheckTargetBtnListener;
 import com.willy.myapplication.processor.IndexTrackerProcessor;
 import com.willy.myapplication.util.DBUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IndexTrackerActivity extends AppCompatActivity {
+public class IndexTrackerSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index_tracker);
+        setContentView(R.layout.activity_index_tracker_setting);
 
         DBUtil dbUtil = new DBUtil(this);
 

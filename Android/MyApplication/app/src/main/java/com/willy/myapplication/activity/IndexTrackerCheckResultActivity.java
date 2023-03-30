@@ -10,11 +10,11 @@ import com.willy.myapplication.R;
 import com.willy.myapplication.listener.indexTracker.CheckTargetBtnListener;
 import com.willy.myapplication.processor.IndexTrackerCheckResultProcessor;
 
-public class IndexTrackerCheckResult extends AppCompatActivity {
+public class IndexTrackerCheckResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.index_tracker_check_result);
+        setContentView(R.layout.activity_index_tracker_check_result);
 
         new IndexTrackerCheckResultProcessor(this).refreshCheckResultTable();
 

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: eureka-client-1
+  profiles:
+    active: dev
+info:
+  app.name: eureka-client-1
+  company.name: willy
+  build.aetifactId: @project.artifactId@
+  build.version: @project.version@
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"

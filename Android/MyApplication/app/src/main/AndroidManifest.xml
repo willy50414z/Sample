@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.IndexTrackerActivity"
+        <activity android:name=".activity.IndexTrackerSettingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.IndexTracker" />
@@ -48,13 +48,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.IndexTrackerResultActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.IndexTrackerResult" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity.LogViewerActivity"
             android:exported="true">
             <intent-filter>
@@ -63,7 +56,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.IndexTrackerCheckResult"
+        <activity android:name=".activity.IndexTrackerCheckResultActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.IndexTrackerCheckResult" />
