@@ -1,5 +1,5 @@
 server:
-  port: ${random}
+  port: 0
 
 #將此服務註冊至Eureka伺服器
 eureka:
