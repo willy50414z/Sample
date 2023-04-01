@@ -1,5 +1,5 @@
 server:
-  port: 3304
+  port: 3305
 
 #將此服務註冊至Eureka伺服器
 eureka:
@@ -9,6 +9,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:3303/eureka/
+#enable actuator
 management:
   info:
     env:
