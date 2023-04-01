@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 0 #隨機生成port
 
 #將此服務註冊至Eureka伺服器
 eureka:
@@ -9,6 +9,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:3303/eureka/
+    region: producerRegion
+    availabilityZones:
+      producerRegion: producerZone
 #enable actuator
 management:
   info:
