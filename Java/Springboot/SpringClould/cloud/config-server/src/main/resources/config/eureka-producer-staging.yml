@@ -1,0 +1,23 @@
+server:
+  port: 0 #隨機生成port
+
+#將此服務註冊至Eureka伺服器
+eureka:
+  instance:
+    instance-id: eureka-client-instance-id #自定义服务名称信息
+    prefer-ip-address: true #显示访问路径的 ip 地址
+  client:
+    service-url:
+      defaultZone: http://eureka.cluster1:3303/eureka/,http://eureka.cluster2:3304/eureka/,http://eureka.cluster3:3305/eureka/
+    region: producerStagingRegion
+    availabilityZones:
+      producerStagingRegion: producerStagingZone
+#enable actuator
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
