@@ -11,4 +11,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
-      defaultZone: http://eureka.cluster1:3303/,http://eureka.cluster2:3304/,http://eureka.cluster3:3305/
+      defaultZone: http://eureka.cluster1:3303/eureka/,http://eureka.cluster2:3304/eureka/,http://eureka.cluster3:3305/eureka/
