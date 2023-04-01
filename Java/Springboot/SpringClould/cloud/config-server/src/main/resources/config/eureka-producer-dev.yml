@@ -8,7 +8,7 @@ eureka:
     prefer-ip-address: true #显示访问路径的 ip 地址
   client:
     service-url:
-      defaultZone: http://eureka.cluster1:3303/eureka/
+      defaultZone: http://eureka.cluster1:3303/eureka/,http://eureka.cluster2:3304/eureka/,http://eureka.cluster3:3305/eureka/
     region: producerRegion
     availabilityZones:
       producerRegion: producerZone
