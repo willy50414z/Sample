@@ -6,9 +6,9 @@ eureka:
     enable-self-preservation: true
     eviction-interval-timer-in-ms: 3000
   instance:
-    hostname: localhost
+    hostname: eureka.cluster1
   client: #此為服務發現Server，不需註冊服務
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
-      defaultZone: http://localhost:3303/,http://localhost:3304/,http://localhost:3305/
+      defaultZone: http://eureka.cluster1:3303/,http://eureka.cluster2:3304/,http://eureka.cluster3:3305/
