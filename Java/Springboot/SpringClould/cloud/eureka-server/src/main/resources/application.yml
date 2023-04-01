@@ -7,7 +7,7 @@ server:
 
 eureka:
   server: #關閉自我保護，並修改[檢查服務是否失效]的時間，若是服務真的失效，將直接移除服務
-    enable-self-preservation: false
+    enable-self-preservation: true
     eviction-interval-timer-in-ms: 3000
   instance:
     hostname: localhost
