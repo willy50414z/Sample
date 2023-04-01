@@ -8,10 +8,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>spring-cloud-config-client</artifactId>
+  <artifactId>spring-config-client</artifactId>
   <packaging>jar</packaging>
 
-  <name>spring-cloud-config-client</name>
+  <name>spring-config-client</name>
   <url>http://maven.apache.org</url>
 
   <properties>

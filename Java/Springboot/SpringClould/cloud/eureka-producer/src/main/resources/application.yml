@@ -1,10 +1,10 @@
 spring:
   application:
-    name: eureka-client-1
+    name: eureka-producer
   profiles:
     active: dev
 info:
-  app.name: eureka-client-1
+  app.name: eureka-producer
   company.name: willy
   build.aetifactId: @project.artifactId@
   build.version: @project.version@

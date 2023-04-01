@@ -7,7 +7,7 @@
 		<module>config-server</module>
 		<module>config-client</module>
 		<module>eureka-server</module>
-		<module>eureka-client-1</module>
+		<module>eureka-producer</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

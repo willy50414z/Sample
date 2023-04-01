@@ -8,10 +8,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>eureka-client-1</artifactId>
+  <artifactId>eureka-producer</artifactId>
   <packaging>jar</packaging>
 
-  <name>eureka-client-1</name>
+  <name>eureka-producer</name>
   <url>http://maven.apache.org</url>
 
   <properties>
