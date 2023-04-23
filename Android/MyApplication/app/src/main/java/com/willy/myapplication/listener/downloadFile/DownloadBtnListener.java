@@ -31,12 +31,13 @@ public class DownloadBtnListener  implements View.OnClickListener{
 
         String filePath = Const._APP_DOWNLOAD_FILE_DIR_INDEX_TRACKER + fileName;
 
-        try {
-            HttpRequestUtil.download(url, Const._REQUEST_METHOD_GET, filePath);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            HttpRequestUtil.download(url, Const._REQUEST_METHOD_GET, filePath);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (TimeoutException e) {
+//            e.printStackTrace();
+//        }
+        HttpRequestUtil.downloadFile(this.ctx, url, fileName);
     }
 }

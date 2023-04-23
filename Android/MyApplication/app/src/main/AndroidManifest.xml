@@ -63,13 +63,26 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.CalculateInvestPlanActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.CalculateInvestPlan" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".service.SampleService"></service>
         <service android:name=".service.IndexTrackerService"></service>
+
+        <receiver android:name=".activity.MainActivity$AlarmReceiver" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+<!--    定時任務-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 </manifest>

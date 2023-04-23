@@ -1,5 +1,7 @@
 package com.willy.myapplication.processor;
 
+import android.os.Environment;
+
 import com.willy.myapplication.constant.Const;
 import com.willy.myapplication.util.FileUtil;
 import com.willy.myapplication.util.HttpRequestUtil;
@@ -16,26 +18,29 @@ public class FetchTWSEProcessor extends FetchDataProcessor {
 
     @Override
     public Double getLastestIndex() throws Exception {
-        //get new index
-        String filePath = Const._APP_DOWNLOAD_FILE_DIR_INDEX_TRACKER + "STOCK_DAY_AVG_ALL_" + new Date().getTime() + ".json";
-        File file = new File(filePath);
-        if(!file.exists()) {
-            HttpRequestUtil.download("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_AVG_ALL", Const._REQUEST_METHOD_GET, filePath);
+        String fileName = "TWSE_"+TypeUtil.dateToStr(new Date(), "yyyyMMdd")+".json";
+        HttpRequestUtil.downloadFile("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_AVG_ALL", this.fileDir, fileName);
+        File file = new File(this.fileDir, fileName);
+
+        long start = new Date().getTime();
+        while(!file.exists() && new Date().getTime() - start < 30000) {
+            Thread.sleep(500);
         }
 
         if (!file.exists()) {
-            throw new FileNotFoundException("can't find downloaded file[" + filePath + "]");
+            throw new FileNotFoundException("can't find downloaded file[" + file.getAbsolutePath() + "]");
         }
-        String fileContent = FileUtil.readToString(filePath);
+
+        String fileContent = FileUtil.readToString(file.getAbsolutePath());
         if (fileContent.length() == 0) {
-            throw new NullPointerException("the content in downloaded file[" + filePath + "] is empty");
+            throw new NullPointerException("the content in downloaded file[" + file.getAbsolutePath() + "] is empty");
         }
         JSONArray ja = null;
         try {
             ja = new JSONArray(fileContent);
             String stockCodeKey = "Code";
             for (int i = 0; i < ja.length(); i++) {
-                if (ja.getJSONObject(i).getString(stockCodeKey).equals(this.jsonFilter.getString(stockCodeKey))) {
+                if (ja.getJSONObject(i).getString(stockCodeKey).equals(this.sidCode)) {
                     return ja.getJSONObject(i).getDouble("ClosingPrice");
                 }
             }

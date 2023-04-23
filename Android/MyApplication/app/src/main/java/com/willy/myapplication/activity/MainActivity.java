@@ -2,7 +2,6 @@ package com.willy.myapplication.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,14 +10,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
-
 import com.willy.myapplication.R;
-import com.willy.myapplication.service.IndexTrackerService;
+import com.willy.myapplication.scheduler.PeriodicJobScheduler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +24,38 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> aAdapter;
     List<String> data;
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //
+        createMenuList();
+//        registerService();
+
+        if(!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+            goToSettingPage();
+        }
+
+        PeriodicJobScheduler jobScheduler = new PeriodicJobScheduler(this);
+        jobScheduler.scheduleJobs();
+
+//        // 设置闹钟
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 20);
+//        calendar.set(Calendar.MINUTE, 00);
+//        calendar.set(Calendar.SECOND, 0);
+//
+//        Intent intent = new Intent(this, AlarmReceiver.class);
+//        pendingIntent = PendingIntent.getBroadcast(this, REQUEST_CODE, intent, PendingIntent.FLAG_MUTABLE);
+//
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+    }
+
+    private void createMenuList() {
         listView = (ListView) findViewById(R.id.testLv);
 
         //組織ListView中的資料
@@ -45,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         data.add("Notification");
         data.add("Log Viewer");
         data.add("Download File");
+        data.add("Calculate Invest Plan");
         for(int i=0;i<20;i++){
             data.add("Item"+i);
         }
@@ -57,25 +80,25 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(aAdapter);
 
         listView.setOnItemClickListener(new ListViewEventListener(this));
+    }
 
-
-        //寫log
-        Log.d(this.getClass().getSimpleName(), "testDLog");
-
-        //Toast
-        Toast.makeText(this, "show toast while start app", Toast.LENGTH_LONG).show();
-
-
+    private void registerService() {
 //        Intent intent = new Intent(MainActivity.this, SampleService.class);
 //        startService(intent);
 
 //        Intent intent = new Intent(MainActivity.this, IndexTrackerService.class);
 //        startService(intent);
-
-        if(!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
-            goToSettingPage();
-        }
     }
+
+//    public static class AlarmReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            Log.i("tag", "alarm message" + new Date());
+//            NotificationUtil n = new NotificationUtil(context, "channelId", "channelName");
+//            n.addNotification("title", "messages" + new Date());
+//        }
+//    }
 
     private void goToSettingPage() {
         Intent intent = new Intent();
@@ -148,6 +171,11 @@ public class MainActivity extends AppCompatActivity {
                 case 6:
                     its = new Intent();
                     its.setClass(MainActivity.this, DownloadFileActivity.class);
+                    this.superClass.startActivity(its);
+                    break;
+                case 7:
+                    its = new Intent();
+                    its.setClass(MainActivity.this, CalculateInvestPlanActivity.class);
                     this.superClass.startActivity(its);
                     break;
 //                case 5:

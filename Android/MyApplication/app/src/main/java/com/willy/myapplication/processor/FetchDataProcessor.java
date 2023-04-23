@@ -1,11 +1,17 @@
 package com.willy.myapplication.processor;
 
+import android.os.Environment;
+
 import org.json.JSONObject;
 
+import java.io.File;
+
 public abstract class FetchDataProcessor {
-    JSONObject jsonFilter;
+    String sidCode;
+    final File fileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/IndexTracker");
     public abstract Double getLastestIndex() throws Exception;
-    public void setJsonFilter(JSONObject jsonFilter) {
-        this.jsonFilter = jsonFilter;
+
+    public void setSidCode(String sidCode) {
+        this.sidCode = sidCode;
     }
 }

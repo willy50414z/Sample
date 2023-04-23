@@ -1,6 +1,7 @@
 package com.willy.myapplication.processor;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,8 +41,8 @@ public class CheckIdxProcessor {
         for (TrackTargetPO tt : ttList) {
             try {
                 FetchDataProcessor dataProc = (FetchDataProcessor) Class.forName(Const._PKG_NAME_PROCESSOR + ".Fetch" + tt.getTargetProc() + "Processor").newInstance();
-                if(tt.getTargetProcArgs() != null && tt.getTargetProcArgs().length() > 0) {
-                    dataProc.setJsonFilter(new JSONObject(tt.getTargetProcArgs()));
+                if (tt.getTargetProcArgs() != null && tt.getTargetProcArgs().length() > 0) {
+                    dataProc.setSidCode(tt.getTargetProcArgs());
                 }
                 double oldIndex = tt.getLastCheckIndex();
                 double newIndex = dataProc.getLastestIndex();
@@ -79,21 +80,21 @@ public class CheckIdxProcessor {
                 }
                 String errLog = TypeUtil.exceptionToString(e);
                 paramMap.put("indexCheckLog", errLog.substring(0, Math.min(200, errLog.length())));
-                notUtil.addNotification("Check Target Failed", "targetName[" + tt.getTargetName() + "]\r\n" + e.getMessage(), Const._ACTION_INDEX_TRACKER_RESULT, paramMap);
+                notUtil.addNotification("Check Target Invest Amt Failed", "targetName[" + tt.getTargetName() + "]\r\n" + e.getMessage(), Const._ACTION_INDEX_TRACKER_RESULT, paramMap);
                 hasAnyNotify = true;
             }
         }
-        if(!hasAnyNotify) {
+        if (!hasAnyNotify) {
             if (notUtil == null) {
                 notUtil = new NotificationUtil(ctx, "CheckIdxProcessor-1", "CheckIdxProcessorChannel");
             }
-            notUtil.addNotification("Check Target Finish", "all target check finish.");
+            notUtil.addNotification("Check Target Invest Amt Finish", "all target check finish.\r\nNo target need to change invest amt");
         }
     }
 
-    private void cleanDataFileDir(){
+    private void cleanDataFileDir() {
         File dwnDir = new File(Const._APP_DOWNLOAD_FILE_DIR_INDEX_TRACKER);
-        if(!dwnDir.exists()) {
+        if (!dwnDir.exists()) {
             dwnDir.mkdir();
         }
         for (File file : dwnDir.listFiles()) {

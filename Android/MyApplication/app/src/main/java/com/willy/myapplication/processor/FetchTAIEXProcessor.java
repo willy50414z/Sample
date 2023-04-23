@@ -1,5 +1,6 @@
 package com.willy.myapplication.processor;
 
+import android.os.Environment;
 import android.util.Log;
 
 import com.willy.myapplication.constant.Const;
@@ -19,18 +20,21 @@ public class FetchTAIEXProcessor extends FetchDataProcessor {
     @Override
     public Double getLastestIndex() throws Exception {
         //get new index
-        String filePath = Const._APP_DOWNLOAD_FILE_DIR_INDEX_TRACKER + "MI_5MINS_HIST_"+ new Date().getTime()+".json";
-        File file = new File(filePath);
-        if(!file.exists()) {
-            HttpRequestUtil.download("https://openapi.twse.com.tw/v1/indicesReport/MI_5MINS_HIST", Const._REQUEST_METHOD_GET, filePath);
+        String fileName = "TAIEX_"+TypeUtil.dateToStr(new Date(), "yyyyMMdd")+".json";;
+        HttpRequestUtil.downloadFile("https://openapi.twse.com.tw/v1/indicesReport/MI_5MINS_HIST", fileDir, fileName);
+        File file = new File(this.fileDir, fileName);
+
+        long start = new Date().getTime();
+        while(!file.exists() && new Date().getTime() - start < 30000) {
+            Thread.sleep(500);
         }
 
         if (!file.exists()) {
-            throw new FileNotFoundException("can't find downloaded file[" + filePath + "]");
+            throw new FileNotFoundException("can't find downloaded file[" + file.getAbsolutePath() + "]");
         }
-        String fileContent = FileUtil.readToString(filePath);
+        String fileContent = FileUtil.readToString(file.getAbsolutePath());
         if (fileContent.length() == 0) {
-            throw new NullPointerException("the content in downloaded file[" + filePath + "] is empty");
+            throw new NullPointerException("the content in downloaded file[" + file.getAbsolutePath() + "] is empty");
         }
         JSONArray ja = null;
         try {
