@@ -2,7 +2,7 @@ spring:
   application:
     name: eureka-server
   profiles:
-    active: cluster1
+    active: cluster3
 eureka:
   server: #關閉自我保護，並修改[檢查服務是否失效]的時間，若是服務真的失效，將直接移除服務
     enable-self-preservation: true

@@ -1,4 +1,4 @@
-package com.willy.myapplication.scheduler;
+package com.willy.myapplication.job;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

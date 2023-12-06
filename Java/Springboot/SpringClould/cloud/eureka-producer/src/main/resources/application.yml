@@ -2,7 +2,7 @@ spring:
   application:
     name: eureka-producer
   profiles:
-    active: dev
+    active: staging
 info:
   app.name: eureka-producer
   company.name: willy

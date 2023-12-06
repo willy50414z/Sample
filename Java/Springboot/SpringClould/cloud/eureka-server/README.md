@@ -3,6 +3,17 @@
 
 Eureka cluster沒有master/slave機制，採用peer to peer方式對等通訊，因此每個node皆需註冊其他node的url，亦提供API供跨網域註冊服務。
 
+## 集群
+Server需新增eureka.client.serviceUrl.defaultZone設定，定義cluster的server路徑，並註冊hostname
+        
+C:\Windows\System32\drivers\etc\hosts新增
+
+        127.0.0.1 eureka.cluster1
+        127.0.0.1 eureka.cluster2
+        127.0.0.1 eureka.cluster3
+
+        
+
 ## 自我保護
 client默認30秒發送一次heart break(或透過actuator)，server 90秒未收到heartbreak就會將該服務剃除，15分鐘內heartbreak fail>15%就會觸發自我保護，避免consumer取得無用的服務。 
 

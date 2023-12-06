@@ -30,21 +30,21 @@ public class CacheableApplication implements CommandLineRunner {
     //單測試cache - 第二次撈，不執行方法並從cache取值
     productDao.findByIdCache(1, null).forEach(System.out::println);
 
-    System.out.println("---測試cache with spel---");
-    productDao.findByIdCacheSpel(1).forEach(System.out::println);
-    //蹭上一行方法執行時put進cache的value，證明上一個方法自動產生的key符合預期
-    productDao.findByIdCacheSpel(1, new Date()).forEach(System.out::println);
+//    System.out.println("---測試cache with spel---");
+//    productDao.findByIdCacheSpel(1).forEach(System.out::println);
+//    //蹭上一行方法執行時put進cache的value，證明上一個方法自動產生的key符合預期
+//    productDao.findByIdCacheSpel(1, new Date()).forEach(System.out::println);
 
-    System.out.println("---測試cache with self def cache generator---");
-    productDao.findByIdCacheSelfDef(1).forEach(System.out::println);
-    productDao.findByIdCacheSelfDef(1).forEach(System.out::println);
+//    System.out.println("---測試cache with self def cache generator---");
+//    productDao.findByIdCacheSelfDef(1).forEach(System.out::println);
+//    productDao.findByIdCacheSelfDef(1).forEach(System.out::println);
 
-    System.out.println("---測試清除cache---");
-    //應該還留有cache
-    productDao.findByIdCache(1, null).forEach(System.out::println);
-    //清除cache
-    productDao.clearAll();
-    //需要重撈
-    productDao.findByIdCache(1, null).forEach(System.out::println);
+//    System.out.println("---測試清除cache---");
+//    //應該還留有cache
+//    productDao.findByIdCache(1, null).forEach(System.out::println);
+//    //清除cache
+//    productDao.clearAll();
+//    //需要重撈
+//    productDao.findByIdCache(1, null).forEach(System.out::println);
   }
 }
