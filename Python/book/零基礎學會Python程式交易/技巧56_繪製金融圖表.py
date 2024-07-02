@@ -14,21 +14,21 @@ from Data import getDataYF, getDataFM
 import mplfinance as mpf
 
 # 取得資料
-prod = "^GSPC"
+prod = "2330.TW"
 data = getDataYF(prod)
 data = data.iloc[-10:]
 
 # 繪製圖表
-mpf.plot(data)
+# mpf.plot(data)
 
 # 繪製K線圖
-mpf.plot(data, type="candle")
+# mpf.plot(data, type="candle")
 
 # 查看樣式
-mpf.available_styles()
+# mpf.available_styles()
 
 # 調整樣式
-mpf.plot(data, type="candle", style="yahoo")
+# mpf.plot(data, type="candle", style="yahoo")
 
 # 修改K線顏色
 mcolor = mpf.make_marketcolors(up="r", down="g", inherit=True)

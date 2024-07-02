@@ -10,9 +10,9 @@ plt.rcParams["axes.unicode_minus"] = False
 # 計算單筆定額風險報酬
 def RiskReturnRatio(data, price_column):
 
-    # 計算年化報酬率 ( 總報酬率 ** (1/年份) -1 )
-    returns = data[price_column].pct_change()
-    ann_ret = (1 + returns).prod() ** (252 / returns.count()) - 1
+    # 計算年化報酬率 ( 總報酬率 ** (1/年份) -1 ) **: 次方
+    returns = data[price_column].pct_change() # pct_change: 成長率 (row[i]/row[i-1] - 1)
+    ann_ret = (1 + returns).prod() ** (252 / returns.count()) - 1 #prod(): 乘積，(所有報酬率+1)相乘 ** 年交易天數(252)/實際交易天數
 
     # 計算年化標準差
     # 日標準差 * (252**0.5)
@@ -20,11 +20,14 @@ def RiskReturnRatio(data, price_column):
     ann_risk = returns.std() * (252 ** 0.5)
 
     # 計算夏普比率 ( 年化報酬 / 年化風險 )
-    rf = 0.01
+    rf = 0.01 #無風險報酬
     ann_sharp = (ann_ret - rf) / ann_risk
 
     # 計算資產最大回落(%)
     dd = (1 + returns).cumprod() / (1 + returns).cumprod().cummax()
+    # cumprod:　前n個數的累計乘積，與prod()的不同是，prod回傳一個數(全部的乘積)，cumprod回傳一個向量，累計的乘積 ex. 1,2,3,4,5 => 1,2,6,24,120
+    # cummax: 前n個數的累計max ex. 1,2,1,3,2,5 => 1,2,2,3,3,5
+
     mdd = (1 - dd).max()
 
     # 顯示評價函數
@@ -56,6 +59,8 @@ def ReturnRegularFixedInvestment(getDataFunction, symbol, price_column, once_amo
     data = data.copy()
     for index, row in data.iterrows():
         # 換月定期定額投資
+        # data.loc[列名稱, 欄名稱]
+        # data.iloc[列index, 欄index]
         if row["yesterday"].month != row["today"].month:
             data.loc[index, "inv_%s" % (inv_time)] = once_amount
             inv_time += 1
@@ -63,7 +68,7 @@ def ReturnRegularFixedInvestment(getDataFunction, symbol, price_column, once_amo
     # 抓出定期定額的投資欄位 計算期末本金
     inv_col = [i for i in data.columns if i[:3] == "inv"]
     for col in inv_col:
-        data[col].fillna(method="ffill", inplace=True)
+        data[col].fillna(method="ffill", inplace=True) # method="ffill": NA替換成前面的value / bfill: NA替換成後面的value
         data[col] *= data.loc[data[col].notna(), "cap_ret"].iloc[1:].cumprod().copy()
     data["final_cap"] = data[inv_col].sum(axis=1).copy()
 

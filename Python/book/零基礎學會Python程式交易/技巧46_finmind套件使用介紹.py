@@ -16,7 +16,12 @@ api = DataLoader()
 # 載入商品名稱
 symbol = "2330"
 
+api.login_by_token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyMy0xMS0wMSAyMjo0MToyMiIsInVzZXJfaWQiOiJ3aWxseTUwNDE0eiIsImlwIjoiMTIzLjE5My4xODAuMjE0In0.pEEWzYeJwYpNPakjnQSyFUOwUx9YecNgCJ6MmX4oaYE")
+
 # 取得歷史資料
-data = api.taiwan_stock_daily_adj(
-    stock_id=symbol, start_date="1900-01-01", end_date="2023-01-01"
+df = api.taiwan_stock_daily(
+    start_date='2020-04-02',
+    end_date='2020-04-12'
 )
+
+print(df)

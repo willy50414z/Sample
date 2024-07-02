@@ -13,10 +13,12 @@ yahoo finance ：金融商品資料取得
 import yfinance as yf
 
 # 商品名稱
-prod = "^GSPC"
+prod = "2330.TW"
 
 # 取得歷史資料
-data = yf.download(prod, start="2017-01-01", end="2017-04-30")
+# data = yf.download(prod, start="2017-01-01", end="2017-04-30")
 
 # 取得全部資料
 data = yf.download(prod, period="max")
+
+print(data)

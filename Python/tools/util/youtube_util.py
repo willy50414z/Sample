@@ -20,3 +20,6 @@ def download_playlist(url, output_dir):
     for url in playlist.video_urls:
         print(f"download video process {download_video_idx} / {len(playlist.video_urls)}")
         download_video(url, output_dir)
+
+if __name__ == '__main__':
+    download_video("https://www.youtube.com/watch?v=HK7SPnGSxLM&list=RDCLAK5uy_n_sz-xNYVBufENsdri7PFhP8ybpfkIlck&index=2", "D:/tmp/aa.mp4")

@@ -12,11 +12,15 @@ def fetch_html(url):
         return None
 
 if __name__ == '__main__':
-    html_content = fetch_html("https://www.gimy.ai/eps/196876-3-5.html")
-    # soup = BeautifulSoup(html_content, 'html.parser')
-    # div_element = soup.find("div", id="zanpiancms_player")
-    html_content = html_content[html_content.find("https:\/\/v8.dious.cc"):]
+    html_content = fetch_html("https://gimy.ai/eps/281800-3-13.html")
+    soup = BeautifulSoup(html_content, 'html.parser')
+    # html_content = html_content[html_content.find("https:\/\/v8.dious.cc"):]
+    #
+    # html_content = html_content[:html_content.find("\"")-1]
+    # html_content = html_content.replace("\\" ,"")
+    # print(html_content)
 
-    html_content = html_content[:html_content.find("\"")-1]
-    html_content = html_content.replace("\\" ,"")
-    print(html_content)
+
+    div_element = soup.find("div", class_="details-play-title")
+    print(div_element)
+    print(div_element.find('a').text + div_element.find('span').text)
