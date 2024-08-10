@@ -50,6 +50,7 @@ export class AppComponent {
 	
 #宣告全域變數
 tsconfig.app.json 中有設定include src/**/*.d.ts的檔案，所以可以自己建立一個xxx.d.ts來宣告全域變數
+宣告變數 => declare var $: any;
 
 #匯入tools
 1. 到https://www.npmjs.com/搜尋要的套件ex. jquery
@@ -61,6 +62,15 @@ tsconfig.app.json 中有設定include src/**/*.d.ts的檔案，所以可以自�
 	angular.json的scripts設定js路徑 => "scripts": ["node_modules/jquery/dist/jquery.min.js"]
 	tsconfig.app.json設定匯入的模組compilerOptions:"types": ["jquery"]
 	
-	
-	
+#使用其他人範例時auto install package
+npm install
+
+
+#ngModel
+need add FormsModule in app.module.ts/imports
+可以綁定變數與HTML element的value，就不需要透過function傳進去
+
+#get BE value
+import HttpClientModule import {HttpClientModule} from '@angular/common/http' in app.module.ts/imports
+
 

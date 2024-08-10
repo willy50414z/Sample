@@ -1,6 +1,7 @@
 import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:intl/intl.dart';
 import 'package:sias/scheduler/PeriodicScheduler.dart';
 import 'package:sias/util/DBUtil.dart';
 import 'package:sias/util/NotificationUtil.dart';
@@ -16,7 +17,27 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNo
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DBUtil.initializeDatabase();
+  WidgetsFlutterBinding.ensureInitialized();
 
+  await BackgroundFetch.configure(
+    BackgroundFetchConfig(
+      minimumFetchInterval: 1,
+      stopOnTerminate: false,
+      enableHeadless: true,
+      requiresBatteryNotLow: false,
+      requiresCharging: false,
+      requiresDeviceIdle: false,
+      requiresStorageNotLow: false,
+    ),
+        (String taskId) async {
+          final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
+          final String formatted = formatter.format(DateTime.now());
+
+          NotificationUtil.showNotification(1, "Schedule Notify", "Current time is: $formatted, taskId: $taskId");
+
+          BackgroundFetch.finish(taskId);
+    },
+  );
   // initBackgroundFetch();
   runApp(MaterialApp(
     home: MyHomePage(),
@@ -29,15 +50,6 @@ Future<void> main() async {
   // final file = await downloadFile(url, savePath);
   // print('File downloaded to: ${file.path}');
 }
-void _showNotification(){
-  NotificationUtil.showNotification(0, "alarm", "alarm message");
-}
-
-void _setSchedule(){
-  PeriodicScheduler ps = PeriodicScheduler();
-  ps.setAllSchedule();
-}
-
 
 
 class MyHomePage extends StatefulWidget {
@@ -47,39 +59,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>  {
 
-  String _status = 'unknown';
-
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // 初始化插件状态
-  Future<void> initPlatformState() async {
-    // 配置后台任务
-    BackgroundFetch.configure(
-      BackgroundFetchConfig(
-        minimumFetchInterval: 15, // 指定任务执行间隔时间，单位为分钟
-        stopOnTerminate: false, // 是否在应用程序终止时停止任务
-        startOnBoot: true, // 是否在设备启动时启动任务
-        enableHeadless: true, // 是否在应用程序进程终止时继续运行任务
-      ),
-          (String taskId) async {
-        // 任务执行逻辑
-        print('[BackgroundFetch] Task received: $taskId');
-        setState(() {
-          _status = 'Task received: $taskId';
-        });
-        BackgroundFetch.finish(taskId);
-      },
-    );
-
-    // 获取当前任务状态
-    var status = await BackgroundFetch.status;
-    setState(() {
-      _status = status.toString();
-    });
   }
 
   @override

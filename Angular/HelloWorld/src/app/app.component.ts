@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Todo, TodoClass } from './model/todo.model';
 
@@ -75,4 +76,10 @@ export class AppComponent implements OnInit {
   ngModuleInput = ''
 
   date = new Date()
+
+  //http client
+  remoteTodo:Todo[] = []
+  constructor(private http:HttpClient) {
+    this.http.get<Todo[]>('assets/testTodoList.json').subscribe(data => this.remoteTodo = data)
+  }
 }

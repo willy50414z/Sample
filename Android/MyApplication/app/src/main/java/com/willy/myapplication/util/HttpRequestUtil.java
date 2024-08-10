@@ -70,6 +70,9 @@ public class HttpRequestUtil {
         if(!fileDir.exists()) {
             fileDir.mkdirs();
         }
+        new Thread(() -> {
+
+        }).start();
         new AsyncTask<String, Void, Void>() {
             @Override
             protected Void doInBackground(String... strings) {
@@ -119,15 +122,19 @@ public class HttpRequestUtil {
         downloadManager.enqueue(request);
     }
 
-    public static void download(String apiUrl, String reqMethod, String filePath) throws InterruptedException, TimeoutException {
+    public static void download(String apiUrl, String fileDir, String fileName) throws InterruptedException, TimeoutException {
         FutureTask<Integer> ft = new FutureTask<>(() -> {
             try {
                 URL url = new URL(apiUrl);
+
+                if(!new File(fileDir).exists()) {
+                    new File(fileDir).mkdirs();
+                }
+                String filePath = fileDir + (fileDir.endsWith("/") ? "" : "/") + fileName;
                 con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod(reqMethod);
                 con.setConnectTimeout(5000);
                     if (con.getResponseCode() == 200) {
-                        Log.d(HttpRequestUtil.class.getSimpleName(), "download file["+filePath+"] from ["+reqMethod+"]["+apiUrl+"] success!");
+                        Log.d(HttpRequestUtil.class.getSimpleName(), "download file["+filePath+"] from ["+apiUrl+"] success!");
                     StreamUtil.download(con.getInputStream(), filePath);
                     return 1;
                 } else {

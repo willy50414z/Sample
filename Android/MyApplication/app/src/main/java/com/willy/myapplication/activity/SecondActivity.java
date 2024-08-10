@@ -29,7 +29,7 @@ public class SecondActivity extends AppCompatActivity {
 //        paramsSb.append("b1=").append(bu.getString("b1")).append("\r\n");
 //        paramsSb.append("b2=").append(bu.getString("b2")).append("\r\n");
 
-        findViewById(R.id.queryBtn).setOnClickListener(new QueryBtnListener(this));
-        findViewById(R.id.updateBtn).setOnClickListener(new UpdateBtnListener(this));
+        findViewById(R.id.button_select).setOnClickListener(new QueryBtnListener(this));
+        findViewById(R.id.button_update).setOnClickListener(new UpdateBtnListener(this));
     }
 }

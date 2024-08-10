@@ -1,6 +1,10 @@
 package com.willy.myapplication.activity;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -10,20 +14,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.willy.myapplication.R;
+import com.willy.myapplication.job.CheckInvestAmtJob;
+import com.willy.myapplication.job.ShowNotificationJob;
+import com.willy.myapplication.processor.CheckIdxProcessor;
 import com.willy.myapplication.scheduler.PeriodicJobScheduler;
+import com.willy.myapplication.util.NotificationUtil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> aAdapter;
     List<String> data;
+
+    private static final int REQUEST_CODE = 12345;
+    private PendingIntent pendingIntent;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -41,18 +55,61 @@ public class MainActivity extends AppCompatActivity {
         PeriodicJobScheduler jobScheduler = new PeriodicJobScheduler(this);
         jobScheduler.scheduleJobs();
 
-//        // 设置闹钟
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(System.currentTimeMillis());
-//        calendar.set(Calendar.HOUR_OF_DAY, 20);
-//        calendar.set(Calendar.MINUTE, 00);
-//        calendar.set(Calendar.SECOND, 0);
-//
-//        Intent intent = new Intent(this, AlarmReceiver.class);
-//        pendingIntent = PendingIntent.getBroadcast(this, REQUEST_CODE, intent, PendingIntent.FLAG_MUTABLE);
-//
-//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        // 设置闹钟
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.SECOND, 0);
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        scheduleJob(14,0,0, 9001, CheckInvestAmtJob.class);
+        scheduleJob(21,0,0, 9005, ShowNotificationJobs.class);
+        scheduleJob(23,0,0, 9006, ShowNotificationJobs.class);
+        scheduleJob(10,0,0, 9007, ShowNotificationJobs.class);
+        scheduleJob(12,0,0, 9008, ShowNotificationJobs.class);
+        scheduleJob(14,0,0, 9009, ShowNotificationJobs.class);
+        scheduleJob(16,0,0, 9010, ShowNotificationJobs.class);
+        scheduleJob(18,0,0, 9011, ShowNotificationJobs.class);
+        scheduleJob(20,0,0, 9012, ShowNotificationJobs.class);
+    }
+
+    public static class ShowNotificationJobs extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            NotificationUtil nu = new NotificationUtil(context, "showNotificationId", "showNotificationName");
+            nu.addNotification("showNotification", "Notifytime[" + new Date() + "]");
+        }
+    }
+
+    private void scheduleJob(int hourOfDay, int minute, int second, int reqCode, Class<?> jobClazz) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, second);
+
+        Intent intent = new Intent(this, jobClazz);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, reqCode, intent, PendingIntent.FLAG_MUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+    }
+
+    public static class AlarmReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            NotificationUtil nu = new NotificationUtil(context, "alarmId", "alarmName");
+            nu.addNotification("alarmTitle1", "alarmNotifi1, date["+new Date()+"]");
+            CheckIdxProcessor cp = new CheckIdxProcessor(context);
+            cp.check();
+        }
     }
 
     private void createMenuList() {

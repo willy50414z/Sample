@@ -5,7 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
-import com.willy.myapplication.activity.MainActivity;
+import com.willy.myapplication.job.CheckInvestAmtJob;
+import com.willy.myapplication.job.ShowNotificationJob;
 
 import java.util.Calendar;
 
@@ -19,6 +20,14 @@ public class PeriodicJobScheduler {
 
     public void scheduleJobs() {
         scheduleJob(14,0,0, 9001, CheckInvestAmtJob.class);
+        scheduleJob(21,0,0, 9005, ShowNotificationJob.class);
+        scheduleJob(23,0,0, 9006, ShowNotificationJob.class);
+        scheduleJob(10,0,0, 9007, ShowNotificationJob.class);
+        scheduleJob(12,0,0, 9008, ShowNotificationJob.class);
+        scheduleJob(14,0,0, 9009, ShowNotificationJob.class);
+        scheduleJob(16,0,0, 9010, ShowNotificationJob.class);
+        scheduleJob(18,0,0, 9011, ShowNotificationJob.class);
+        scheduleJob(20,0,0, 9012, ShowNotificationJob.class);
     }
 
     private void scheduleJob(int hourOfDay, int minute, int second, int reqCode, Class<?> jobClazz) {

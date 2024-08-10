@@ -46,7 +46,7 @@ public class ImportBtnListener implements View.OnClickListener {
         c.moveToFirst();
         Integer trackTargetId = c.getInt(0) + 1;
 
-        dbutil.execSQL("INSERT INTO TRACK_TARGET VALUES ("+ trackTargetId +", '" + targetNameTxt + "', '" + market + "', '{\""+codeColumn+"\" : \""+targetCodeTxt+"\"}', '19700101', 0, 0)");
+        dbutil.execSQL("INSERT INTO TRACK_TARGET VALUES ("+ trackTargetId +", '" + targetNameTxt + "', '" + market + "', '"+targetCodeTxt+"', '19700101', 0, 0)");
 //        System.out.println("INSERT INTO TRACK_TARGET VALUES ('" + targetNameTxt + "', '" + market + "', '{\""+codeColumn+"\" : \""+targetCodeTxt+"\"}', '19700101', 0, 0)");
 
 

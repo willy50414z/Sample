@@ -19,7 +19,7 @@ public class FetchTWSEProcessor extends FetchDataProcessor {
     @Override
     public Double getLastestIndex() throws Exception {
         String fileName = "TWSE_"+TypeUtil.dateToStr(new Date(), "yyyyMMdd")+".json";
-        HttpRequestUtil.downloadFile("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_AVG_ALL", this.fileDir, fileName);
+        HttpRequestUtil.download("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_AVG_ALL", this.fileDir.getAbsolutePath(), fileName);
         File file = new File(this.fileDir, fileName);
 
         long start = new Date().getTime();
